@@ -50,13 +50,6 @@ export function SearchBar({ onSearch, authToken, apiBase }) {
         ) : (
           <span className="auth-badge">Authenticated</span>
         )}
-
-        <button className="right-btn">Post Job</button>
-
-        <div className="dashboard-pack">
-          <img className="img" src="icons/layout-grid.svg" alt="dashboard" />
-          <div className="dashboard">Dashboard</div>
-        </div>
       </div>
     </div>
   );
