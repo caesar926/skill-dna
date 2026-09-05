@@ -1,0 +1,62 @@
+.heatmap-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.heatmap-header h3 {
+  font-size: 16px;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.heatmap-header span {
+  font-size: 13px;
+  color: var(--text-body);
+}
+
+.heatmap-wrapper {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+
+.heatmap-grid {
+  display: flex;
+  gap: 3px;
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.heatmap-day {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #161f2c;
+  transition: transform 0.1s ease, outline 0.1s ease;
+}
+
+.heatmap-day:hover {
+  outline: 1px solid var(--text-main);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.heatmap-day[data-level="0"] { background-color: #161f2c; }
+.heatmap-day[data-level="1"] { background-color: #0e4429; }
+.heatmap-day[data-level="2"] { background-color: #006d32; }
+.heatmap-day[data-level="3"] { background-color: #26a641; }
+.heatmap-day[data-level="4"] { background-color: #39d353; }

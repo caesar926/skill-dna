@@ -1,0 +1,54 @@
+
+.metric-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom:7px ;
+}
+
+.metric-card h4 {
+  font-size: 13px;
+  color: var(--text-body);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.metric-card p {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--text-main);
+  margin: 0;
+}
+
+
+.empty-state-card {
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 32px;
+  text-align: center;
+  color: var(--text-body);
+}
+
+
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--border-color) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+.avatar-skel { width: 120px; height: 120px; border-radius: 50%; }
+.title-skel { height: 24px; width: 60%; margin-bottom: 12px; }
+.body-skel { height: 16px; width: 80%; }
+.card-skel { height: 100px; width: 100%; }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

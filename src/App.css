@@ -1,0 +1,189 @@
+:root {
+  /* Backgrounds */
+  --bg-main: #0d1520;       
+  --bg-card: #1b2636;       
+  --bg-input: #161f2c; 
+
+  /* Accents & Brand Colors */
+  --color-primary: #257bf4;   
+  --color-success: #2ca750;    
+  --color-secondary: #707d93;  
+  --color-streak: #49a3f1;     
+
+  /* Typography */
+  --text-main: #ffffff;        
+  --text-body: #94a3b8;        
+  --text-muted: #5b6b84;       
+
+  /* Borders & Shadows */
+  --border-color: #243248;     
+  --card-radius: 8px;          
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 280px 1fr; 
+  gap: 32px;
+  padding: 110px 40px 40px 40px;
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.content-headline h2 {
+  font-size: 24px;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.content-headline p {
+  color: var(--text-body);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  color: var(--text-main);
+  font-size: 18px;
+  margin: 32px 0 16px 0;
+}
+
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.status-msg {
+  text-align: center;
+  padding: 80px;
+  color: var(--text-body);
+}
+
+@media (max-width: 900px) {
+  .dashboard-container {
+    grid-template-columns: 1fr; 
+    padding: 100px 20px 20px 20px;
+    gap: 24px;
+  }
+}
+
+/* Interactive Click States for Header Actions */
+.dashboard-pack {
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.dashboard-pack:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.right-btn {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.right-btn:active {
+  transform: scale(0.97);
+}
+
+/* Modal Popup Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h3 {
+  color: var(--text-main);
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.modal-content p {
+  color: var(--text-body);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.modal-input {
+  width: 100%;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.modal-input:focus {
+  outline: 1px solid var(--color-primary);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-body);
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background-color: var(--color-primary);
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+ font-weight : 600;
+  cursor: pointer;
+}

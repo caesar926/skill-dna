@@ -1,0 +1,77 @@
+.profile-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+}
+
+.avatar-wrapper {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #2a3b54;
+  overflow: hidden;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--color-primary);
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-username {
+  color: var(--text-main);
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.profile-bio {
+  color: var(--text-body);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.profile-meta {
+  width: 100%;
+  text-align: left;
+}
+
+.meta-title {
+  color: var(--text-main);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.meta-label {
+  color: var(--text-muted);
+}
+
+.meta-value {
+  color: var(--text-body);
+  font-weight: 600;
+}
+
+.status-tag {
+  color: var(--color-streak);
+}
