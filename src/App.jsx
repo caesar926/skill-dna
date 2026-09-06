@@ -8,7 +8,7 @@ import { Skeleton } from './components/Skeleton';
 import './App.css';
 
 function App() {
-  const API_BASE = 'https://skill-dna-2sqj.onrender.com';
+  const API_BASE = '/api';
   const [searchedUser, setSearchedUser] = useState('');
   const [profileData, setProfileData] = useState(null);
   const [repos, setRepos] = useState([]);
