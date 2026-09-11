@@ -10,11 +10,11 @@ import { UseGitprofileData } from './hooks/UseGitprofileData';
 import './App.css';
 
 function App() {
-  const API_BASE = '/api';
+  const API_BASE = 'https://skill-dna-2sqj.onrender.com';
   const [searchedUser, setSearchedUser] = useState('');
 
   const {
-    authToken,
+    isLoggedIn,
     profileData,
     repos,
     pinnedRepos,
@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <SearchBar
         onSearch={setSearchedUser}
-        authToken={authToken}
+        isLoggedIn={isLoggedIn}
         apiBase={API_BASE}
       />
 
