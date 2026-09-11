@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <SearchBar
         onSearch={setSearchedUser}
-        isLoggedIn={isLoggedIn}
+        authToken={isLoggedIn}
         apiBase={API_BASE}
       />
 
