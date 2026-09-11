@@ -3,7 +3,7 @@ import { useAuthToken } from './useAuthToken';
 import { fetchGithubUser, fetchGithubRepos } from '../services/GithubRest';
 
 export function UseGitprofileData(searchedUser, apiBase) {
-  const [isLoggedIn, setIsLoggedIn] = useAuthToken();
+  const [isLoggedIn, setIsLoggedIn] = useAuthToken(apiBase);
   const [profileData, setProfileData] = useState(null);
   const [repos, setRepos] = useState([]);
   const [pinnedRepos, setPinnedRepos] = useState([]);

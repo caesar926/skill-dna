@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export function useAuthToken(apiBase) {
-  const [isLoggedIn, setIsLoggedIn] = useState(apiBase);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
