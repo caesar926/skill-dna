@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useClaimProfile } from '../hooks/useClaimProfile'
 import './SearchBar.css'
 
 export function SearchBar({ onSearch, authToken, apiBase }) {
   const [userName, setUserName] = useState('')
+  const { claimStatus, claimedProfile, errorMessage, claimProfile } = useClaimProfile(apiBase);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -42,14 +44,36 @@ export function SearchBar({ onSearch, authToken, apiBase }) {
 
 
       <div className="right">
-        {/* Render GitHub Login Button when unauthenticated */}
         {!authToken ? (
           <a href={`${apiBase}/auth/login`} className="github-login-btn">
             Login with GitHub
           </a>
         ) : (
-          <span className="auth-badge">Authenticated</span>
+          <>
+            <span className="auth-badge">Authenticated</span>
+
+            <div className='status'>
+              {
+                claimStatus === "idle" ? (<button onClick=
+                  {claimProfile}>Claim your profile</button>
+                ) : claimStatus === "loading" ? (
+                  <button disabled >Claiming...</button>
+                ) : claimStatus === "success" ? (
+                  <span>Profile claimed </span>
+                ) : (
+                  <div>
+                    error{errorMessage}
+                    <button onClick=
+                      {claimProfile}>Claim your profile</button>
+                  </div>
+
+                )
+              }
+            </div>
+          </>
+
         )}
+
       </div>
     </div>
   );
