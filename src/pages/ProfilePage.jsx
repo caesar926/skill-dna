@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom'
 import { usePersonalProfile } from '../hooks/usePersonalProfile'
 import { Skeleton } from '../components/Skeleton'
+import DevProfile from '../components/DevProfile'
 
 export function ProfilePage({apiBase}) {
   const { username } = useParams()
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase)
+  
   return(
   status === "loading" ? (
   <Skeleton />
@@ -13,7 +15,13 @@ export function ProfilePage({apiBase}) {
 ) : status === "error" ? (
   <p>{errorMessage}</p>
 ) : (
-  <pre>{JSON.stringify(profile, null, 2)}</pre>
+ <DevProfile profile={{
+  avatar_url: profile.data?.avatarUrl,
+  login: profile.github_username,
+  bio: profile.data?.bio,
+  public_repos: profile.data?.repositories?.totalCount ?? 0,
+  followers: profile.data?.followers?.totalCount ?? 0,
+}} />
 )
   )
  

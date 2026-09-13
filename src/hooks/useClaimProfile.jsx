@@ -27,8 +27,6 @@ export function useClaimProfile(apiBase) {
 
   }
 
-
-
   return {
     claimStatus,
     claimedProfile,
