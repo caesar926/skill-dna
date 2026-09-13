@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://skill-dna-2sqj.onrender.com/:path*" }
+    { "source": "/api/:path*", "destination": "https://skill-dna-2sqj.onrender.com/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
