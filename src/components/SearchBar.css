@@ -177,6 +177,97 @@
   white-space: nowrap;
 }
 
+/* Container for Claim Profile States */
+.status {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Base Claim Button Styling */
+.status button {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+}
+
+.status button:hover:not(:disabled) {
+  background-color: #1a64d4;
+  transform: translateY(-1px);
+}
+
+.status button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Disabled Loading State */
+.status button:disabled {
+  background-color: var(--bg-input);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Success Badge Indicator */
+.status > span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-success);
+  background-color: rgba(44, 167, 80, 0.12);
+  border: 1px solid var(--color-success);
+  padding: 5px 12px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+/* Error State Container & Retry Button */
+.status div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #f87171;
+}
+
+.status div button {
+  background-color: transparent;
+  border: 1px solid #f87171;
+  color: #f87171;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.status div button:hover {
+  background-color: rgba(248, 113, 113, 0.15);
+}
+
+/* Responsive Scaling */
+@media (max-width: 650px) {
+  .status button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 435px) {
+  .status button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+ 
+  /* Auto-hide static badge on narrow screens to prevent header overflow */
+  .auth-badge {
+    display: none;
+  }
+}
+
 
 @media (max-width: 650px) {
   .github-login-btn {
