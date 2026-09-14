@@ -13,7 +13,7 @@ export function Analytics({ languageCounts, total }) {
 
   return (
     <div className="analytics-card">
-      <h3 className="card-title">Skill DNA</h3>
+      <h3 className="card-title">Technology Footprint</h3>
      
       <div className="chart-wrapper">
         <PieChart width={220} height={220}>
