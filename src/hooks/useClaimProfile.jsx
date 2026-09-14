@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useClaimProfile(apiBase) {
   const [claimStatus, setClaimStatus] = useState("idle")
   const [claimedProfile, setClaimedProfile] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
-  const claimProfile = async () => {
+  useEffect(() => {
+     const checkClaimStatus = async () => {
     setClaimStatus('loading');
     try {
       const response = await fetch(`${apiBase}/api/profile/claim`, {
@@ -18,20 +19,25 @@ export function useClaimProfile(apiBase) {
         return
       }
       const data = await response.json()
-      setClaimedProfile(data)
+        setClaimedProfile(data)
       setClaimStatus("success")
+
+      
     } catch {
       setErrorMessage("Unable to connect to the server. please check your internet connection and try again");
       setClaimStatus("error")
     }
+  };
 
-  }
+   checkClaimStatus()
+  }, [apiBase])
+ 
 
   return {
     claimStatus,
     claimedProfile,
     errorMessage,
-    claimProfile
+
   }
 }
 
