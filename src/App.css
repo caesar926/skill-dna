@@ -188,3 +188,50 @@ body {
   cursor: pointer;
 }
 
+/* Proof of Work Scores Styling */
+.scores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.score-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.score-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-secondary);
+}
+
+.score-card.highlight {
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(37, 123, 244, 0.08) 100%);
+}
+
+.score-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-body);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.score-card.highlight .score-label {
+  color: var(--color-primary);
+}
+
+.score-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+}

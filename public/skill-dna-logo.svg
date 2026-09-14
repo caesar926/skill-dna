@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Skill DNA logo mark">
+<defs>
+<linearGradient id="dna" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#20D9FF"/><stop offset="48%" stop-color="#168BFF"/><stop offset="100%" stop-color="#3047E8"/></linearGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<g fill="none" stroke="url(#dna)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+<path d="M181 103 C294 103 337 166 337 224 C337 282 294 319 205 356 C154 377 128 408 128 438"/>
+<path d="M331 74 C218 74 175 137 175 195 C175 253 218 290 307 327 C358 348 384 379 384 409"/>
+</g>
+<g stroke="url(#dna)" stroke-width="18" stroke-linecap="round"><path d="M205 144 L303 144"/><path d="M181 195 L327 195"/><path d="M185 248 L326 248"/><path d="M209 300 L304 300"/></g>
+<g fill="url(#dna)"><circle cx="181" cy="103" r="15"/><circle cx="331" cy="74" r="15"/><circle cx="128" cy="438" r="15"/><circle cx="384" cy="409" r="15"/></g>
+</svg>
