@@ -4,21 +4,29 @@ import { Skeleton } from '../components/Skeleton'
 import DevProfile from '../components/DevProfile'
 import Heatmap from '../components/Heatmap'
 import RepoCard from '../components/RepoCard'
+import {calculateScore} from '../utils/proofOfWorkScore'
 
 export function ProfilePage({ apiBase}) {
   const { username } = useParams()
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase)
+  
+  if (status === "loading"){
+    return <Skeleton/>
+  }
+
+  if(status === "notFound"){
+    return <p>This developer hasn't claimed their profile yet</p>
+  }
+
+  if (status === "error") {
+    return <p>{errorMessage}</p>
+  }
+
+  const { finalScore, activityScore, impactScore } = calculateScore(profile);
 
   return (
-    status === "loading" ? (
-      <Skeleton />
-    ) : status === "notFound" ? (
-      <p>This developer hasn't claimed their profile yet</p>
-    ) : status === "error" ? (
-      <p>{errorMessage}</p>
-    ) : (
-      <>
-          <main className='dashboard-container'>
+    <>
+        <main className='dashboard-container'>
         <aside className='left-sidebar'>
           <DevProfile profile={{
             avatar_url: profile.data?.avatarUrl,
@@ -28,8 +36,13 @@ export function ProfilePage({ apiBase}) {
             followers: profile.data?.followers?.totalCount ?? 0,
           }} />
         </aside>
-
+          
         <section className='main-content'>
+      
+         {impactScore}
+         {activityScore}
+         {finalScore}
+        
           {( profile.data?.pinnedItems?.nodes ?? []).map((repo) => (
             <RepoCard
               key={repo.id}
@@ -49,10 +62,7 @@ export function ProfilePage({ apiBase}) {
            <Heatmap contributionData={profile.data?.contributionsCollection?.contributionCalendar} />
 
       </>
-    
-    )
   )
-
 }
 
 export default ProfilePage
