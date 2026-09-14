@@ -39,9 +39,9 @@ export function ProfilePage({ apiBase}) {
           
         <section className='main-content'>
       
-         {Math.round( impactScore)}
-         {Math.round( activityScore)}
-         {Math.round( finalScore)}
+         <p>{Math.round( impactScore)}</p>
+         <p>{Math.round( activityScore)}</p>
+         <p>{Math.round( finalScore)}</p>
         
           {( profile.data?.pinnedItems?.nodes ?? []).map((repo) => (
             <RepoCard
