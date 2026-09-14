@@ -9,7 +9,7 @@ import {calculateScore} from '../utils/proofOfWorkScore'
 export function ProfilePage({ apiBase}) {
   const { username } = useParams()
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase)
-  
+
   if (status === "loading"){
     return <Skeleton/>
   }
@@ -39,9 +39,9 @@ export function ProfilePage({ apiBase}) {
           
         <section className='main-content'>
       
-         {impactScore}
-         {activityScore}
-         {finalScore}
+         {Math.round( impactScore)}
+         {Math.round( activityScore)}
+         {Math.round( finalScore)}
         
           {( profile.data?.pinnedItems?.nodes ?? []).map((repo) => (
             <RepoCard
