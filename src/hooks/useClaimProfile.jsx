@@ -28,7 +28,7 @@ export function useClaimProfile(apiBase) {
 
   useEffect(() => {
     claimProfile()
-  }, [apiBase])
+  }, [apiBas])
 
   return {
     claimStatus,
