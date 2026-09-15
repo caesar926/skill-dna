@@ -5,8 +5,7 @@ export function useClaimProfile(apiBase) {
   const [claimedProfile, setClaimedProfile] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
-  useEffect(() => {
-     const claimProfile = async () => {
+  const claimProfile = async () => {
     setClaimStatus('loading');
     try {
       const response = await fetch(`${apiBase}/api/profile/claim`, {
@@ -14,29 +13,27 @@ export function useClaimProfile(apiBase) {
       })
       if (!response.ok) {
         const errorData = await response.json()
-        setErrorMessage(errorData.error || "Failed to claim profie")
+        setErrorMessage(errorData.error || "Failed to claim profile")
         setClaimStatus("error")
         return
       }
       const data = await response.json()
-        setClaimedProfile(data)
+      setClaimedProfile(data)
       setClaimStatus("success")
-
-      
     } catch {
       setErrorMessage("Check your internet connection and try again");
       setClaimStatus("error")
     }
   };
 
-   claimProfile()
+  useEffect(() => {
+    claimProfile()
   }, [apiBase])
- 
 
   return {
     claimStatus,
     claimedProfile,
-    errorMessage
+    errorMessage,
+    claimProfile,
   }
 }
-
