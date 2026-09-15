@@ -20,7 +20,7 @@ export function calculateScore(profile) {
 
 const externalPRs = prsByRepo
   .filter(entry => entry.repository.owner.login !== profile.github_username)
-  .reduce((sum, entry) => sum + entry.pullRequestContributions.totalCount, 0);
+  .reduce((sum, entry) => sum + entry.contributions.totalCount, 0);
   
   
 
