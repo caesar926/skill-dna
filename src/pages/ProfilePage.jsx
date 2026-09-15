@@ -22,7 +22,8 @@ export function ProfilePage({ apiBase}) {
     return <p>{errorMessage}</p>
   }
 
-  const { finalScore, activityScore, impactScore, breadthScore } = calculateScore(profile);
+  const { finalScore, activityScore, impactScore, breadthScore, projectQualityScore,
+    openSourceScore } = calculateScore(profile);
 
   return (
     <>
@@ -53,8 +54,16 @@ export function ProfilePage({ apiBase}) {
               <span className="score-value">{Math.round(activityScore)}</span>
             </div>
             <div className="score-card">
-              <span className="score-label">Activity Score</span>
+              <span className="score-label">Breadth score</span>
               <span className="score-value">{Math.round(breadthScore)}</span>
+            </div>
+            <div className="score-card">
+              <span className="score-label">Open source score</span>
+              <span className="score-value">{Math.round(openSourceScore)}</span>
+            </div>
+            <div className="score-card">
+              <span className="score-label">Project Quality score</span>
+              <span className="score-value">{Math.round(projectQualityScore)}</span>
             </div>
           </div>
         
