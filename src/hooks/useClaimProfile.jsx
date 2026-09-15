@@ -6,7 +6,7 @@ export function useClaimProfile(apiBase) {
   const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
-     const checkClaimStatus = async () => {
+     const claimProfile = async () => {
     setClaimStatus('loading');
     try {
       const response = await fetch(`${apiBase}/api/profile/claim`, {
@@ -24,20 +24,19 @@ export function useClaimProfile(apiBase) {
 
       
     } catch {
-      setErrorMessage("Unable to connect to the server. please check your internet connection and try again");
+      setErrorMessage("Check your internet connection and try again");
       setClaimStatus("error")
     }
   };
 
-   checkClaimStatus()
+   claimProfile()
   }, [apiBase])
  
 
   return {
     claimStatus,
     claimedProfile,
-    errorMessage,
-
+    errorMessage
   }
 }
 
