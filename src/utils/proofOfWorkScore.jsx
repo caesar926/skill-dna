@@ -10,8 +10,9 @@ export function calculateScore(profile) {
   const commitScore = logScore(commits, 2000);
   const prScore = logScore(prs, 100);
   const activeDayScore = linearScore(activeDays, 300);
-  const languages = profile.data?.totalLanguage ?? []
-
+  const languages = profile.data?.totalLanguages ?? []
+  const distinctLanguageCount = languages.length
+  
   const activityScore =
     (commitScore * 0.35) +
     (prScore * 0.25) +
@@ -23,14 +24,15 @@ export function calculateScore(profile) {
   const impactScore =
     (followerScore * 0.70) +
     (starScore * 0.30);
-  console.log(languages);
+  
+   const breadthScore = linearScore(distinctLanguageCount, 8)
 
   const finalScore = (activityScore * 0.5) + (impactScore * 0.5);
   return {
     finalScore,
     activityScore,
     impactScore,
-    
+    breadthScore,
   };
 }
 
