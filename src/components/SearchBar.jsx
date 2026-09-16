@@ -4,7 +4,7 @@ import './SearchBar.css'
 
 export function SearchBar({ onSearch, authToken, apiBase }) {
   const [userName, setUserName] = useState('')
-  const { claimStatus, claimedProfile, errorMessage, claimProfile } = useClaimProfile(apiBase);
+  const { claimStatus, errorMessage, claimProfile } = useClaimProfile(apiBase);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
