@@ -17,7 +17,9 @@
 
   /* Borders & Shadows */
   --border-color: #243248;     
-  --card-radius: 8px;          
+  --card-radius: 8px;  
+  
+  
 }
 
 body {
@@ -226,3 +228,4 @@ body {
   color: var(--text-main);
   line-height: 1;
 }
+
