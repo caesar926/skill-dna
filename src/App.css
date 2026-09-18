@@ -265,7 +265,7 @@ body {
   width: 18px;
   height: 18px;
   color: #60a5fa;
-  animation: pulse-glow 2s infinite ease-in-out;
+  
 }
 
 .ai-success-tag {
@@ -300,7 +300,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(37, 123, 244, 0.25);
+ 
 }
 
 .ai-btn svg {
@@ -310,7 +310,7 @@ body {
 
 .ai-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(37, 123, 244, 0.4);
+ 
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
 }
 
@@ -368,11 +368,6 @@ body {
 /* Animations */
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
 }
 
 @keyframes fadeIn {
