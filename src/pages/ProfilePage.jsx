@@ -42,21 +42,49 @@ export function ProfilePage({ apiBase }) {
         </aside>
 
         <section className='main-content'>
-          <div className='aiSuggestion'>
-            {
-              loading === "idle" ? (
-                <button onClick={fetchSuggestions}>AI suggestion</button>
-              ) : loading === "loading" ? (
-                <button disabled>Loading...</button>
-              ) : loading === "success" ? (
-                <span>Suggestions fetched</span>
-              ) : (
-                <div>
-                  error {error}
-                  <button onClick={fetchSuggestions}>AI suggestion</button>
-                </div>
-              )
-            }
+          {/* AI Banner / Button Section */}
+          <div className='ai-suggestion-bar'>
+            <div className="ai-status">
+              <span className="ai-badge">
+                <svg className="ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+                AI Insights
+              </span>
+              {loading === "success" && <span className="ai-success-tag">Updated</span>}
+              {loading === "error" && <span className="ai-error-tag">Error fetching suggestions</span>}
+            </div>
+
+            <button 
+              className={`ai-btn ${loading === "loading" ? "is-loading" : ""} ${loading === "success" ? "is-success" : ""}`}
+              onClick={fetchSuggestions}
+              disabled={loading === "loading"}
+            >
+              {loading === "idle" && (
+                <>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                  <span>Generate AI Insights</span>
+                </>
+              )}
+              {loading === "loading" && (
+                <>
+                  <span className="spinner"></span>
+                  <span>Analyzing Profile...</span>
+                </>
+              )}
+              {loading === "success" && (
+                <>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Regenerate Insights</span>
+                </>
+              )}
+              {loading === "error" && (
+                <>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  <span>Retry AI Insights</span>
+                </>
+              )}
+            </button>
           </div>
 
           <div className="scores-grid">
@@ -64,39 +92,54 @@ export function ProfilePage({ apiBase }) {
               <span className="score-label">Final Score</span>
               <span className="score-value">{Math.round(finalScore)}</span>
             </div>
+            
             <div className="score-card">
               <span className="score-label">Impact Score</span>
               <span className="score-value">{Math.round(impactScore)}</span>
               {suggestions?.impactScore && (
-                <p className="suggestion-text">{suggestions.impactScore}</p>
+                <div className="suggestion-box">
+                  <p className="suggestion-text">{suggestions.impactScore}</p>
+                </div>
               )}
             </div>
+
             <div className="score-card">
               <span className="score-label">Activity Score</span>
               <span className="score-value">{Math.round(activityScore)}</span>
               {suggestions?.activityScore && (
-                <p className="suggestion-text">{suggestions.activityScore}</p>
+                <div className="suggestion-box">
+                  <p className="suggestion-text">{suggestions.activityScore}</p>
+                </div>
               )}
             </div>
+
             <div className="score-card">
               <span className="score-label">Breadth score</span>
               <span className="score-value">{Math.round(breadthScore)}</span>
               {suggestions?.breadthScore && (
-                <p className="suggestion-text">{suggestions.breadthScore}</p>
+                <div className="suggestion-box">
+                  <p className="suggestion-text">{suggestions.breadthScore}</p>
+                </div>
               )}
             </div>
+
             <div className="score-card">
               <span className="score-label">Open source score</span>
               <span className="score-value">{Math.round(openSourceScore)}</span>
               {suggestions?.openSourceScore && (
-                <p className="suggestion-text">{suggestions.openSourceScore}</p>
+                <div className="suggestion-box">
+                  <p className="suggestion-text">{suggestions.openSourceScore}</p>
+                </div>
               )}
             </div>
+
             <div className="score-card">
               <span className="score-label">Project Quality score</span>
               <span className="score-value">{Math.round(projectQualityScore)}</span>
               {suggestions?.projectQualityScore && (
-                <p className="suggestion-text">{suggestions.projectQualityScore}</p>
+                <div className="suggestion-box">
+                  <p className="suggestion-text">{suggestions.projectQualityScore}</p>
+                </div>
               )}
             </div>
           </div>
@@ -118,7 +161,6 @@ export function ProfilePage({ apiBase }) {
       </main>
 
       <Heatmap contributionData={profile.data?.contributionsCollection?.contributionCalendar} />
-
     </>
   )
 }
