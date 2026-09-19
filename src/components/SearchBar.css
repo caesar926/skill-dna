@@ -83,57 +83,86 @@
   font-size: 13px;
 }
 
-.middle {
-  flex: 1;
-  margin-left: 10px;
-  margin-right: 10px;
+/* Header alignment */
+.header {
+  background: var(--bg-card);
   display: flex;
-  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  height: 80px;
 
-  max-width: 500px;
-  min-width: 150px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  padding: 0 24px;
 }
 
+/* Center Search Container */
+.middle {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto; /* Centers container horizontally between left and right sections */
+}
+
+/* Rounded Pill Search Input */
 .input {
-  max-width: 500px;
+  width: 100%;
+  max-width: 520px;
   background: var(--bg-input);
   color: var(--text-main);
-  flex: 1;
-  width: 0;
-  font-size: 16px;
-  height: 38px;
-  border: none;
-  border-radius: 5px;
+  font-size: 14px;
+  height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 28px; /* Rounded pill shape like Google search reference */
   outline: none;
-  padding-left: 70px;
-  padding-right: 70px;
-
-  /*padding: 11px 50px 11px 70px;*/
+  padding: 0 20px 0 48px; /* Room on the left for the search icon */
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft background elevation */
 }
 
 .input:focus {
-  border: 1px solid rgb(0, 0, 0, 0.15);
-  color: var(--text-body)
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(37, 123, 244, 0.2);
 }
 
 .input::placeholder {
-  color: var(--text-body);
+  color: var(--text-muted);
 }
 
+/* Search Icon Button inside the Input */
 .searchBtn {
   position: absolute;
-  top: 7px;
-  left: 10px;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 2;
 }
 
 .img {
-  padding: 1px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
   filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease;
+}
+
+.searchBtn:hover .img {
+  opacity: 1;
 }
 
 .right {
@@ -489,3 +518,92 @@
   }
 }
 
+
+/* ==========================================
+   Centered Hero Search Bar Section
+========================================== */
+
+.homepage-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px 30px 20px;
+  margin-top: 80px; /* Spacing below fixed top header */
+  text-align: center;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 880px;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  color: var(--text-body);
+  margin-bottom: 28px;
+}
+
+/* Floating Search Pill Input */
+.page-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.page-search-input {
+  width: 100%;
+  height: 102px;
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 88px; /* Rounded pill shape */
+  font-size: 15px;
+  padding: 0 24px 0 52px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.page-search-input:focus {
+  border-color: var(--color-primary);
+
+}
+
+.page-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Icon Inside Input */
+.page-search-btn {
+  position: absolute;
+  right: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 0;
+}
+
+.page-search-btn img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease;
+}
+
+.page-search-btn:hover img {
+  opacity: 1;
+}
