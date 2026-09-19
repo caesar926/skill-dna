@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import { HomePage } from './pages/HomePage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import { SearchBar } from './components/SearchBar';
@@ -11,12 +11,9 @@ function App() {
 
   const [searchedUser, setSearchedUser] = useState('');
 
-  const location = useLocation();
 
-  const isHomePage = location.pathname === '/';
 
-  const showSearchBar = !isHomePage || Boolean(searchedUser) || !profileData;
-
+  const showSearchBar = true;
   const {
     isLoggedIn,
     profileData,
