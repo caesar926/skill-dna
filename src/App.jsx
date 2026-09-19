@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import {Routes, Route} from 'react-router-dom';
-import {HomePage} from './pages/HomePage.jsx';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { HomePage } from './pages/HomePage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import { SearchBar } from './components/SearchBar';
-import { tallyLanguages } from './utils/LanguageState';
-import { UseGitprofileData } from './hooks/UseGitprofileData';
+import { UseGitprofileData } from './hooks/UseGitprofileData.jsx';
 import './App.css';
 
 function App() {
   const API_BASE = 'https://skill-dna-2sqj.onrender.com';
+
   const [searchedUser, setSearchedUser] = useState('');
+
+  const location = useLocation();
+
+  const isHomePage = location.pathname === '/';
+
+  const showSearchBar = !isHomePage || Boolean(searchedUser);
 
   const {
     isLoggedIn,
@@ -20,26 +26,55 @@ function App() {
     error,
     contributionData,
     activityMetrics,
+    languageCounts
   } = UseGitprofileData(searchedUser, API_BASE);
 
-  const languageCounts = tallyLanguages(repos);
-  const total = Object.values(languageCounts).reduce((sum, n) => sum + n, 0);
+  
+ 
 
   return (
     <div className="App">
-         
-  <SearchBar
+
+      {showSearchBar && (
+        <SearchBar
           onSearch={setSearchedUser}
           authToken={isLoggedIn}
           apiBase={API_BASE}
         />
-  <Routes>
-    <Route path="/" element={<HomePage loading={loading} error={error} profileData={profileData} activityMetrics={activityMetrics} total={total} languageCounts={languageCounts} pinnedRepos={pinnedRepos} repos={repos} contributionData={contributionData} />} />
-    <Route path="/u/:username" element={<ProfilePage apiBase={API_BASE} />} />
-  </Routes>
+      )}
 
+      <Routes>
 
-     
+        <Route
+          path="/"
+          element={
+            <HomePage
+              onSearch={setSearchedUser}
+              searchedUser={searchedUser}
+              loading={loading}
+              error={error}
+              profileData={profileData}
+              activityMetrics={activityMetrics}
+              languageCounts={languageCounts} 
+              total={Object.values(languageCounts).reduce((s, n) => s + n, 0)}
+              pinnedRepos={pinnedRepos}
+              repos={repos}
+              contributionData={contributionData}
+            />
+          }
+        />
+
+        <Route
+          path="/u/:username"
+          element={
+            <ProfilePage
+              apiBase={API_BASE}
+            />
+          }
+        />
+
+      </Routes>
+
     </div>
   );
 }
