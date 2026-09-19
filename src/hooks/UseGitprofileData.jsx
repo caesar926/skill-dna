@@ -23,7 +23,7 @@ export function UseGitprofileData(searchedUser, apiBase) {
       timedOut = true;
       controller.abort();
     }, 15000);
-    try{
+    
        const gitData = async () => {
       setLoading(true);
       setError(null);
@@ -31,8 +31,8 @@ export function UseGitprofileData(searchedUser, apiBase) {
       setPinnedRepos([]);
       setContributionData(null);
       setLanguageCounts({});
-
-      const response = await fetch(`${apiBase}/api/public/profile/${searchedUser}`, {
+        try{
+           const response = await fetch(`${apiBase}/api/public/profile/${searchedUser}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,6 @@ export function UseGitprofileData(searchedUser, apiBase) {
 
       const data = await response.json();
       setLoading(false);
-      setIsLoggedIn(true)
       setProfileData({
         avatar_url: data.data.avatarUrl,
         login: data.github_username,
@@ -66,12 +65,21 @@ export function UseGitprofileData(searchedUser, apiBase) {
       );
       setPinnedRepos(data.data.pinnedItems.nodes);
       setLanguageCounts(data.data.languageCounts ?? {});
+        }catch(err){
+           if (err.name !== 'AbortError' && timedOut) {
+            setError('Request timed out')
+            
+    } else if (err.name === 'AbortError' && !timedOut) {
+      setError('An error occurred while fetching data.');
+    } else {
+      setError("An error occurred")
+    }
+    setLoading(false);
+        } 
     };
 
      gitData();
-    }catch(error){
-      error 
-    }
+    
 
     return () => {
       controller.abort();

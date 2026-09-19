@@ -4,9 +4,9 @@ import { RepoCard } from '../components/RepoCard';
 import { Heatmap } from '../components/Heatmap';
 import { Skeleton } from '../components/Skeleton';
 
-export function HomePage({loading, error, profileData, activityMetrics, total, languageCounts, pinnedRepos, repos, contributionData}) {
-  return(
-     <>
+export function HomePage({ loading, error, profileData, activityMetrics, total, languageCounts, pinnedRepos,  contributionData }) {
+  return (
+    <>
       {loading && <Skeleton />}
 
       {error && !loading && <p className="status-msg error-msg">Error: {error}</p>}
@@ -46,26 +46,23 @@ export function HomePage({loading, error, profileData, activityMetrics, total, l
               </div>
             )}
 
-            <h3 className="section-title">
-              {pinnedRepos.length > 0 ? 'Pinned Repositories' : 'Repositories'}
-            </h3>
-
-            {repos.length === 0 ? (
+            {pinnedRepos.length === 0 ? (
               <div className="empty-state-card">
-                <p>This user has no public repositories available.</p>
+                <p>This user has no pinned repositories available.</p>
               </div>
             ) : (
               <div className="repo-grid">
-                {(pinnedRepos.length > 0 ? pinnedRepos : repos).map((repo) => (
+                {pinnedRepos.map((repo) => (
                   <RepoCard key={repo.id || repo.name} repo={repo} />
                 ))}
               </div>
             )}
+
           </section>
         </main>
       )}
 
       <Heatmap contributionData={contributionData} />
-     </>
+    </>
   )
 }

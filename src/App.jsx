@@ -20,7 +20,6 @@ function App() {
   const {
     isLoggedIn,
     profileData,
-    repos,
     pinnedRepos,
     loading,
     error,
@@ -58,7 +57,7 @@ function App() {
               languageCounts={languageCounts} 
               total={Object.values(languageCounts).reduce((s, n) => s + n, 0)}
               pinnedRepos={pinnedRepos}
-              repos={repos}
+             
               contributionData={contributionData}
             />
           }
