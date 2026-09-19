@@ -15,7 +15,7 @@ function App() {
 
   const isHomePage = location.pathname === '/';
 
-  const showSearchBar = !isHomePage || Boolean(searchedUser);
+  const showSearchBar = !isHomePage || Boolean(searchedUser) || profileData;
 
   const {
     isLoggedIn,
