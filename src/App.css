@@ -401,6 +401,7 @@ body {
 .hero-content {
   width: 100%;
   max-width: 860px;
+  
 }
 
 .hero-title {
@@ -418,11 +419,13 @@ body {
 }
 
 .page-search-container {
+  max-width: 700px;
+  width: 650px;
   position: relative;
   display: flex;
   align-items: center;
-  max-width:860px;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .page-search-input {
@@ -433,10 +436,11 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 17px;
   font-size: 15px;
-  padding: 0 56px 0 24px;
+  padding: 0 24px 0 24px;
   outline: none;
   transition: all 0.2s ease;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  
 }
 
 .page-search-input:focus {
@@ -491,7 +495,7 @@ body {
   align-items: center;
   gap: 8px;
   background: var(--bg-card);
-  border: none;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   padding: 60px 42px;
   border-radius: 12px;
@@ -501,6 +505,7 @@ body {
 .quick-user-card:hover {
   background-color: var(--bg-card);
   transform: translateY(-2px);
+  border: 1px solid var(--color-primary);
 }
 
 .quick-user-avatar {
