@@ -482,10 +482,18 @@ body {
   filter: brightness(0) invert(1);
 }
 
+.quick-users-viewport {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
 .quick-users-row {
   display: flex;
   justify-content: center;
   gap: 28px;
+  width: max-content;
+   animation: quickUsersLoop 22.8s infinite;
   margin-top: 40px;
 }
 
@@ -526,6 +534,25 @@ body {
   color: var(--text-body);
 }
 
+
+@keyframes quickUsersLoop {
+  0%, 3.509%     { transform: translateX(0%); }
+  3.509%, 16.667% { transform: translateX(-8.333%); }
+  16.667%, 20.175% { transform: translateX(-8.333%); }
+  20.175%, 33.333% { transform: translateX(-16.667%); }
+  33.333%, 36.842% { transform: translateX(-16.667%); }
+  36.842%, 50%   { transform: translateX(-25%); }
+  50%, 53.509%   { transform: translateX(-25%); }
+  53.509%, 66.667% { transform: translateX(-33.333%); }
+  66.667%, 70.175% { transform: translateX(-33.333%); }
+  70.175%, 83.333% { transform: translateX(-41.667%); }
+  83.333%, 86.842% { transform: translateX(-41.667%); }
+  86.842%, 100%  { transform: translateX(-50%); }
+}
+
+.quick-users-row:has(.quick-user-card:hover) {
+  animation-play-state: paused;
+}
 /* ==========================================
    MOBILE HOMEPAGE
 ========================================== */
