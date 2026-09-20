@@ -52,23 +52,28 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
                 
               </div>
 
-              <div className="quick-users-row">
-                  {['caesar926', 'torvalds', 'gaearon'].map((name) => (
-                    <button
-                      key={name}
-                      type="button"
-                      className="quick-user-card"
-                      onClick={() => onSearch(name)}
-                    >
-                      <img
-                        src={`https://github.com/${name}.png`}
-                        alt={name}
-                        className="quick-user-avatar"
-                      />
-                      <span className="quick-user-name">{name}</span>
-                    </button>
-                  ))}
-                </div>
+
+                <div className="quick-users-viewport">
+  <div className="quick-users-row">
+    {[...Array(2)].flatMap((_, dup) =>
+      ['caesar926', 'torvalds', 'gaearon', 'sindresorhus', 'addyosmani', 'tj'].map((name) => (
+        <button
+          key={`${name}-${dup}`}
+          type="button"
+          className="quick-user-card"
+          onClick={() => onSearch(name)}
+        >
+          <img
+            src={`https://github.com/${name}.png`}
+            alt={name}
+            className="quick-user-avatar"
+          />
+          <span className="quick-user-name">{name}</span>
+        </button>
+      ))
+    )}
+  </div>
+</div>
             </div>
           </section>
         </>
