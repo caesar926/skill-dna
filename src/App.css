@@ -27,6 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 
@@ -421,6 +422,7 @@ body {
   display: flex;
   align-items: center;
   max-width:860px;
+  justify-content: center;
 }
 
 .page-search-input {
@@ -457,7 +459,7 @@ body {
   width: 42px;
   height: 42px;
   background: var(--color-primary);
-  border-radius: 50%;
+  border-radius: 25%;
   border: none;
   cursor: pointer;
   display: flex;
@@ -491,7 +493,7 @@ body {
   background: var(--bg-card);
   border: none;
   cursor: pointer;
-  padding: 40px 42px;
+  padding: 60px 42px;
   border-radius: 12px;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }

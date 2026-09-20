@@ -27,12 +27,10 @@ export function SearchBar({ onSearch, authToken, apiBase }) {
 
 
       <div className='middle'>
-        <div >
-          <button
+     
+     <button
             className='searchBtn'
             onClick={() => onSearch(userName)}><img className='img' src="icons/search.svg" /></button>
-        </div>
-
         <input
           className='input'
           placeholder='Search developer...'
@@ -40,6 +38,7 @@ export function SearchBar({ onSearch, authToken, apiBase }) {
           onChange={(e) => setUserName(e.target.value)}
           onKeyDown={handleKeyDown}
         />
+
       </div>
 
       {<AuthControl apiBase={apiBase} authToken={authToken} />}
