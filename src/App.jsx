@@ -1,19 +1,22 @@
 import { useState } from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { HomePage } from './pages/HomePage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import { SearchBar } from './components/SearchBar';
 import { UseGitprofileData } from './hooks/UseGitprofileData.jsx';
 import './App.css';
 
+
 function App() {
   const API_BASE = 'https://skill-dna-2sqj.onrender.com';
 
   const [searchedUser, setSearchedUser] = useState('');
 
+  const location = useLocation();
 
+  const isHomePage = location.pathname === '/';
 
-  const showSearchBar = true;
+  const showSearchBar = !isHomePage || Boolean(searchedUser) 
   const {
     isLoggedIn,
     profileData,
@@ -54,8 +57,9 @@ function App() {
               languageCounts={languageCounts} 
               total={Object.values(languageCounts).reduce((s, n) => s + n, 0)}
               pinnedRepos={pinnedRepos}
-             
               contributionData={contributionData}
+              isLoggedIn={isLoggedIn}
+              apiBase={API_BASE}
             />
           }
         />
