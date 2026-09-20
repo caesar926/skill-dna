@@ -640,13 +640,8 @@ body {
 
   /* Quick user cards */
   .quick-users-row {
-    width: 100%;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 28px;
-  }
+  gap: 18px;
+}
 
   .quick-user-card {
     width: 100%;
