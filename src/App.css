@@ -525,3 +525,120 @@ body {
   font-size: 13px;
   color: var(--text-body);
 }
+
+/* ==========================================
+   MOBILE HOMEPAGE
+========================================== */
+
+@media (max-width: 600px) {
+
+  /* Prevent anything from creating horizontal scrolling */
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Login button */
+  .hero-auth-fixed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: auto;
+    padding: 16px;
+    z-index: 50;
+  }
+
+  /* Give the hero enough room below the login button */
+  .homepage-hero {
+    min-height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 110px 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .hero-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 auto 28px;
+    max-width: 320px;
+  }
+
+  /* Search bar */
+  .page-search-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .page-search-input {
+    width: 100%;
+    max-width: 100%;
+    height: 58px;
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 0 60px 0 18px;
+  }
+
+  .page-search-btn {
+    width: 40px;
+    height: 40px;
+    right: 9px;
+  }
+
+  /* Quick user cards */
+  .quick-users-row {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .quick-user-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 60px 6px;
+    border-radius: 10px;
+  }
+
+  .quick-user-avatar {
+    width: 48px;
+    height: 48px;
+    border-width: 2px;
+  }
+
+  .quick-user-name {
+    font-size: 11px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+```
