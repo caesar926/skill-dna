@@ -1,12 +1,81 @@
+import { useState } from 'react';
 import { DevProfile } from '../components/DevProfile';
 import { Analytics } from '../components/Analytics';
 import { RepoCard } from '../components/RepoCard';
 import { Heatmap } from '../components/Heatmap';
 import { Skeleton } from '../components/Skeleton';
+import { AuthControl } from '../components/AuthControl';
+export function HomePage({ onSearch, searchedUser, loading, error, profileData, activityMetrics, total, languageCounts, pinnedRepos, contributionData, apiBase, isLoggedIn }) {
+  const [userName, setUserName] = useState('');
 
-export function HomePage({ loading, error, profileData, activityMetrics, total, languageCounts, pinnedRepos,  contributionData }) {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onSearch(userName);
+    }
+  };
+
   return (
     <>
+      {!searchedUser && (
+        <>
+          <div className="hero-auth-fixed">
+            <AuthControl apiBase={apiBase} authToken={isLoggedIn} />
+          </div>
+
+          <section className="homepage-hero">
+            <div className="hero-card">
+
+              <div className="hero-content">
+                <h1 className="hero-title">Developer Search</h1>
+                <p className="hero-subtitle">Search and verify developer proof-of-work scores</p>
+
+                <div className="page-search-container">
+                  <img className="search-icon-inline" src="icons/search.svg" alt="" />
+                  <input
+                    className="page-search-input"
+                    type="text"
+                    placeholder="Search developer username..."
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                  />
+                  <button
+                    className="page-search-btn"
+                    onClick={() => onSearch(userName)}
+                    type="button"
+                    aria-label="Search"
+                  >
+                    <img src="icons/search.svg" alt="Search" />
+                  </button>
+                </div>
+
+                
+              </div>
+
+              <div className="quick-users-row">
+                  {['caesar926', 'torvalds', 'gaearon'].map((name) => (
+                    <button
+                      key={name}
+                      type="button"
+                      className="quick-user-card"
+                      onClick={() => onSearch(name)}
+                    >
+                      <img
+                        src={`https://github.com/${name}.png`}
+                        alt={name}
+                        className="quick-user-avatar"
+                      />
+                      <span className="quick-user-name">{name}</span>
+                    </button>
+                  ))}
+                </div>
+            </div>
+          </section>
+        </>
+
+
+      )}
+
       {loading && <Skeleton />}
 
       {error && !loading && <p className="status-msg error-msg">Error: {error}</p>}
@@ -57,12 +126,11 @@ export function HomePage({ loading, error, profileData, activityMetrics, total, 
                 ))}
               </div>
             )}
-
           </section>
         </main>
       )}
 
       <Heatmap contributionData={contributionData} />
     </>
-  )
+  );
 }
