@@ -641,13 +641,14 @@ body {
   /* Quick user cards */
   .quick-users-row {
   gap: 18px;
+  width: 100%; max-width: 100%;
 }
 
   .quick-user-card {
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    padding: 60px 6px;
+    padding: 20px 20px;
     border-radius: 10px;
   }
 
