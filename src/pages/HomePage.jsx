@@ -83,7 +83,16 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
 
       {loading && <Skeleton />}
 
-      {error && !loading && <p className="status-msg error-msg">Error: {error}</p>}
+      {error && !loading && (
+  <div className="error-state-card">
+    <div className="error-icon">!</div>
+    <h3>Couldn't find that developer</h3>
+    <p>{error}</p>
+    <button className="error-retry-btn" onClick={() => onSearch(searchedUser)}>
+      Try again
+    </button>
+  </div>
+)}
 
       {profileData && !loading && (
         <main className="dashboard-container">

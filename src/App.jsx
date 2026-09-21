@@ -17,6 +17,8 @@ function App() {
   const isHomePage = location.pathname === '/';
 
   const showSearchBar = !isHomePage || Boolean(searchedUser) 
+
+  const [searchTrigger, setSearchTrigger] = useState(0);
   const {
     isLoggedIn,
     profileData,
@@ -26,17 +28,22 @@ function App() {
     contributionData,
     activityMetrics,
     languageCounts
-  } = UseGitprofileData(searchedUser, API_BASE);
+  } = UseGitprofileData(searchedUser, API_BASE, searchTrigger);
 
   
  
+
+const handleSearch = (name) => {
+  setSearchedUser(name);
+  setSearchTrigger((t) => t + 1);
+};
 
   return (
     <div className="App">
 
       {showSearchBar && (
         <SearchBar
-          onSearch={setSearchedUser}
+          onSearch={handleSearch}
           authToken={isLoggedIn}
           apiBase={API_BASE}
         />
@@ -48,7 +55,7 @@ function App() {
           path="/"
           element={
             <HomePage
-              onSearch={setSearchedUser}
+              onSearch={handleSearch}
               searchedUser={searchedUser}
               loading={loading}
               error={error}

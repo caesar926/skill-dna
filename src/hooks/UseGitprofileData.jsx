@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuthToken } from './useAuthToken';
 
-export function UseGitprofileData(searchedUser, apiBase) {
+export function UseGitprofileData(searchedUser, apiBase, searchTrigger) {
   const [isLoggedIn, setIsLoggedIn] = useAuthToken(apiBase);
   const [profileData, setProfileData] = useState(null);
   const [pinnedRepos, setPinnedRepos] = useState([]);
@@ -87,7 +87,7 @@ export function UseGitprofileData(searchedUser, apiBase) {
     controller.abort();
     clearTimeout(timeoutId);
   };
-}, [searchedUser, isLoggedIn]);
+}, [searchedUser, isLoggedIn, searchTrigger]);
 
   return {
     isLoggedIn,

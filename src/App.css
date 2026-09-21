@@ -459,9 +459,9 @@ body {
 .page-search-btn {
   position: absolute;
   right: 9px;
-  top: 12px;
-  width: 42px;
-  height: 42px;
+  top: 9px;
+  width: 52px;
+  height: 52px;
   background: var(--color-primary);
   border-radius: 25%;
   border: none;
@@ -552,6 +552,59 @@ body {
 
 .quick-users-row:has(.quick-user-card:hover) {
   animation-play-state: paused;
+}
+
+.error-state-card {
+  max-width: 420px;
+  margin: 60px auto;
+  text-align: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 40px 32px;
+}
+
+.error-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid #f87171;
+  color: #f87171;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-state-card h3 {
+  color: var(--text-main);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.error-state-card p {
+  color: var(--text-body);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.error-retry-btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.error-retry-btn:hover {
+  background-color: var(--color-primary-hover);
 }
 /* ==========================================
    MOBILE HOMEPAGE
