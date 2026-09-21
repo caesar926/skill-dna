@@ -556,7 +556,7 @@ body {
 
 .error-state-card {
   max-width: 420px;
-  margin: 60px auto;
+  margin: 100px auto;
   text-align: center;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
