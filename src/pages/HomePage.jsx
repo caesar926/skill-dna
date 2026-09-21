@@ -49,31 +49,31 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
                   </button>
                 </div>
 
-                
+
               </div>
 
 
-                <div className="quick-users-viewport">
-  <div className="quick-users-row">
-    {[...Array(2)].flatMap((_, dup) =>
-      ['caesar926', 'torvalds', 'gaearon', 'sindresorhus', 'addyosmani', 'tj'].map((name) => (
-        <button
-          key={`${name}-${dup}`}
-          type="button"
-          className="quick-user-card"
-          onClick={() => onSearch(name)}
-        >
-          <img
-            src={`https://github.com/${name}.png`}
-            alt={name}
-            className="quick-user-avatar"
-          />
-          <span className="quick-user-name">{name}</span>
-        </button>
-      ))
-    )}
-  </div>
-</div>
+              <div className="quick-users-viewport">
+                <div className="quick-users-row">
+                  {[...Array(2)].flatMap((_, dup) =>
+                    ['caesar926', 'torvalds', 'gaearon', 'sindresorhus', 'addyosmani', 'tj'].map((name) => (
+                      <button
+                        key={`${name}-${dup}`}
+                        type="button"
+                        className="quick-user-card"
+                        onClick={() => onSearch(name)}
+                      >
+                        <img
+                          src={`https://github.com/${name}.png`}
+                          alt={name}
+                          className="quick-user-avatar"
+                        />
+                        <span className="quick-user-name">{name}</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
             </div>
           </section>
         </>
@@ -84,15 +84,15 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
       {loading && <Skeleton />}
 
       {error && !loading && (
-  <div className="error-state-card">
-    <div className="error-icon">!</div>
-    <h3>Couldn't find that developer</h3>
-    <p>{error}</p>
-    <button className="error-retry-btn" onClick={() => onSearch(searchedUser)}>
-      Try again
-    </button>
-  </div>
-)}
+        <div className="error-state-card">
+          <div className="error-icon">!</div>
+          <h3>Couldn't find that developer</h3>
+          <p>{error}</p>
+          <button className="error-retry-btn" onClick={() => onSearch(searchedUser)}>
+            Try again
+          </button>
+        </div>
+      )}
 
       {profileData && !loading && (
         <main className="dashboard-container">
