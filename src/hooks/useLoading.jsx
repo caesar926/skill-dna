@@ -1,6 +1,8 @@
 import { useEffect, useState} from "react";
 
-export function useAnalysisMessages(loading, messages = ["Analyzing GitHub profile...", "Scanning repositories and contributions...", "Building developer analysis..."]) {
+const messages = ["Analyzing GitHub profile...", "Scanning repositories and contributions...", "Building developer analysis..."]
+
+export function useAnalysisMessages(loading) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
