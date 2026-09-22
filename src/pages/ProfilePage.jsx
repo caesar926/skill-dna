@@ -11,7 +11,7 @@ import { useSuggestions } from '../hooks/useSuggestions'
 export function ProfilePage({ apiBase }) {
   const { username } = useParams()
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase)
-  const { suggestions, loading, error, fetchSuggestions } = useSuggestions(username, apiBase)
+  const { suggestions, loading, fetchSuggestions } = useSuggestions(username, apiBase)
 
   if (status === "loading") {
     return <Skeleton />
