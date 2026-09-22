@@ -3,10 +3,13 @@ import { DevProfile } from '../components/DevProfile';
 import { Analytics } from '../components/Analytics';
 import { RepoCard } from '../components/RepoCard';
 import { Heatmap } from '../components/Heatmap';
-import { Skeleton } from '../components/Skeleton';
+
 import { AuthControl } from '../components/AuthControl';
+import {useAnalysisMessages} from '../hooks/useLoading'
+
 export function HomePage({ onSearch, searchedUser, loading, error, profileData, activityMetrics, total, languageCounts, pinnedRepos, contributionData, apiBase, isLoggedIn }) {
   const [userName, setUserName] = useState('');
+  const analysisMessage = useAnalysisMessages(loading);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -81,8 +84,13 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
 
       )}
 
-      {loading && <Skeleton />}
-
+     {loading && (
+  <div className="analyzing-state">
+    <div className="analyzing-spinner" />
+    <p className="analyzing-text">{analysisMessage}</p>
+  </div>
+)}
+     
       {error && !loading && (
         <div className="error-state-card">
           <div className="error-icon">!</div>
@@ -136,7 +144,17 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
             ) : (
               <div className="repo-grid">
                 {pinnedRepos.map((repo) => (
-                  <RepoCard key={repo.id || repo.name} repo={repo} />
+                  <RepoCard
+              key={repo.id}
+              repo={{
+                html_url: repo.url,
+                name: repo.name,
+                description: repo.description,
+                language: repo.primaryLanguage?.name,
+                stargazers_count: repo.stargazerCount,
+                forks_count: repo.forkCount,
+              }}
+            />
                 ))}
               </div>
             )}
