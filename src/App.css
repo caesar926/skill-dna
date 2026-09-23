@@ -306,7 +306,7 @@ body {
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-/* AI Action Button */
+
 .ai-btn {
   display: inline-flex;
   align-items: center;
@@ -355,7 +355,6 @@ body {
   color: var(--text-main);
 }
 
-/* Loading Spinner */
 .spinner {
   width: 14px;
   height: 14px;
@@ -385,7 +384,7 @@ body {
   margin: 0;
 }
 
-/* Animations */
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -578,6 +577,41 @@ body {
   animation-play-state: paused;
 }
 
+.quick-user-score {
+
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 5px; 
+  margin-top: 6px;
+  display: inline-block;
+}
+
+.quick-user-score.red {
+  color: #ff4d4d;
+ 
+}
+
+.quick-user-score.orange {
+  color: #ff9f43;
+ 
+}
+
+.quick-user-score.green {
+  color: #2ea043;
+
+}
+
+.quick-user-score.blue {
+  color: #0066ff;
+  
+}
+
+.span{
+  color: var(--text-body);
+  font-size: 13px;
+}
+
 .error-state-card {
   max-width: 420px;
   margin: 100px auto;
@@ -636,7 +670,6 @@ body {
 
 @media (max-width: 600px) {
 
-  /* Prevent anything from creating horizontal scrolling */
   html,
   body,
   #root {
@@ -645,7 +678,6 @@ body {
     overflow-x: hidden;
   }
 
-  /* Login button */
   .hero-auth-fixed {
     position: absolute;
     top: 0;
@@ -655,7 +687,6 @@ body {
     z-index: 50;
   }
 
-  /* Give the hero enough room below the login button */
   .homepage-hero {
     min-height: auto;
     width: 100%;
@@ -691,7 +722,6 @@ body {
     max-width: 320px;
   }
 
-  /* Search bar */
   .page-search-container {
     width: 100%;
     max-width: 100%;
@@ -715,7 +745,6 @@ body {
     top: 9px;
   }
 
-  /* Quick user cards */
   .quick-users-row {
   gap: 12px;
   display: flex;
@@ -742,42 +771,9 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-}
 
-.quick-user-score {
-
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 9px;
-  border-radius: 5px; 
-  margin-top: 6px;
-  display: inline-block;
-}
-
-/* 0–25 */
-.quick-user-score.red {
-  color: #ff4d4d;
- 
-}
-
-/* 26–50 */
-.quick-user-score.orange {
-  color: #ff9f43;
- 
-}
-
-/* 51–75 */
-.quick-user-score.green {
-  color: #2ea043;
-
-}
-
-/* 76–100 */
-.quick-user-score.blue {
-  color: #0066ff;
-  
-}
-
-.span{
+  .span{
   color: var(--text-body);
+  font-size: 11px;
+}
 }
