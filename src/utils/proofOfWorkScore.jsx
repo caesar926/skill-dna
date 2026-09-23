@@ -41,7 +41,7 @@ const externalPRs = prsByRepo
   const forkScore = logScore(forks, 100)
   const descriptionRatio = totalCount > 0 ? description / totalCount : 0;
   const descriptionScore = linearScore(descriptionRatio * 100, 100);
-
+   
 
     const projectQualityScore = 
     (forkScore * 0.40) + 
