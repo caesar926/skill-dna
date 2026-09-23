@@ -744,3 +744,40 @@ body {
   }
 }
 
+.quick-user-score {
+
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 5px; 
+  margin-top: 6px;
+  display: inline-block;
+}
+
+/* 0–25 */
+.quick-user-score.red {
+  color: #ff4d4d;
+ 
+}
+
+/* 26–50 */
+.quick-user-score.orange {
+  color: #ff9f43;
+ 
+}
+
+/* 51–75 */
+.quick-user-score.green {
+  color: #2ea043;
+
+}
+
+/* 76–100 */
+.quick-user-score.blue {
+  color: #0066ff;
+  
+}
+
+.span{
+  color: var(--text-body);
+}

@@ -1,21 +1,72 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DevProfile } from '../components/DevProfile';
 import { Analytics } from '../components/Analytics';
 import { RepoCard } from '../components/RepoCard';
 import { Heatmap } from '../components/Heatmap';
 
 import { AuthControl } from '../components/AuthControl';
-import {useAnalysisMessages} from '../hooks/useLoading'
+import { useAnalysisMessages } from '../hooks/useLoading'
+import { calculateScore } from '../utils/proofOfWorkScore';
+
+const demoUsers = [
+  'caesar926',
+  'torvalds',
+  'gaearon',
+  'sindresorhus',
+  'addyosmani',
+  'tj'
+]
 
 export function HomePage({ onSearch, searchedUser, loading, error, profileData, activityMetrics, total, languageCounts, pinnedRepos, contributionData, apiBase, isLoggedIn }) {
   const [userName, setUserName] = useState('');
   const analysisMessage = useAnalysisMessages(loading);
+  const [demoProfiles, setDemoProfiles] = useState({});
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       onSearch(userName);
     }
   };
+
+  useEffect(() => {
+    const fetchDemoProfiles = async () => {
+      const data = await Promise.all(
+        demoUsers.map(async (name) => {
+          const response = await fetch(
+            `${apiBase}/api/public/profile/${name}`
+          );
+
+          const profile = await response.json()
+          const score = calculateScore(profile)
+          const finalScore = score.finalScore
+          return {
+            username: name,
+            score: finalScore
+          }
+          
+        })
+       
+      );
+       console.log(data)
+      const scores = {}
+      data.forEach((profile) => {
+        scores[profile.username] = profile.score;
+      });
+
+      setDemoProfiles(scores);
+    };
+
+
+    fetchDemoProfiles()
+
+  }, [apiBase]);
+
+  function getScoreColor(score) {
+    if (score <= 25) return 'red'
+    if (score <= 50) return 'orange'
+    if (score <= 75) return 'green'
+    else return 'blue'
+  }
 
   return (
     <>
@@ -57,23 +108,37 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
 
 
               <div className="quick-users-viewport">
+
                 <div className="quick-users-row">
                   {[...Array(2)].flatMap((_, dup) =>
-                    ['caesar926', 'torvalds', 'gaearon', 'sindresorhus', 'addyosmani', 'tj'].map((name) => (
-                      <button
-                        key={`${name}-${dup}`}
-                        type="button"
-                        className="quick-user-card"
-                        onClick={() => onSearch(name)}
-                      >
-                        <img
-                          src={`https://github.com/${name}.png`}
-                          alt={name}
-                          className="quick-user-avatar"
-                        />
-                        <span className="quick-user-name">{name}</span>
-                      </button>
-                    ))
+                    demoUsers.map((name) => {
+                      const score = demoProfiles[name];
+
+                      return (
+                        <button
+                          key={`${name}-${dup}`}
+                          type="button"
+                          className="quick-user-card"
+                          onClick={() => onSearch(name)}
+                        >
+                          <img
+                            src={`https://github.com/${name}.png`}
+                            alt={name}
+                            className="quick-user-avatar"
+                          />
+
+                          <span className="quick-user-name">{name}</span>
+
+                          {score !== undefined && (
+                            <span
+                              className={`quick-user-score ${getScoreColor(score)}`}
+                            >
+                              <div><span className='span'>Proof of work .</span> {Math.round(score)}</div>
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })
                   )}
                 </div>
               </div>
@@ -84,13 +149,13 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
 
       )}
 
-     {loading && (
-  <div className="analyzing-state">
-    <div className="analyzing-spinner" />
-    <p className="analyzing-text">{analysisMessage}</p>
-  </div>
-)}
-     
+      {loading && (
+        <div className="analyzing-state">
+          <div className="analyzing-spinner" />
+          <p className="analyzing-text">{analysisMessage}</p>
+        </div>
+      )}
+
       {error && !loading && (
         <div className="error-state-card">
           <div className="error-icon">!</div>
@@ -145,16 +210,16 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
               <div className="repo-grid">
                 {pinnedRepos.map((repo) => (
                   <RepoCard
-              key={repo.id}
-              repo={{
-                html_url: repo.url,
-                name: repo.name,
-                description: repo.description,
-                language: repo.primaryLanguage?.name,
-                stargazers_count: repo.stargazerCount,
-                forks_count: repo.forkCount,
-              }}
-            />
+                    key={repo.id}
+                    repo={{
+                      html_url: repo.url,
+                      name: repo.name,
+                      description: repo.description,
+                      language: repo.primaryLanguage?.name,
+                      stargazers_count: repo.stargazerCount,
+                      forks_count: repo.forkCount,
+                    }}
+                  />
                 ))}
               </div>
             )}
