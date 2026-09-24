@@ -65,6 +65,11 @@ body {
   margin: 0 auto;
 }
 
+.content-headline{
+  display: flex;
+  
+}
+
 
 .content-headline h2 {
   font-size: 24px;
@@ -609,7 +614,7 @@ body {
 
 .span{
   color: var(--text-body);
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .error-state-card {
