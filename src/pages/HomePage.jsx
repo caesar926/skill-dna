@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { DevProfile } from '../components/DevProfile';
 import { Analytics } from '../components/Analytics';
 import { RepoCard } from '../components/RepoCard';
 import { Heatmap } from '../components/Heatmap';
-
 import { AuthControl } from '../components/AuthControl';
 import { useAnalysisMessages } from '../hooks/useLoading'
 import { calculateScore } from '../utils/proofOfWorkScore';
@@ -21,6 +21,7 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
   const [userName, setUserName] = useState('');
   const analysisMessage = useAnalysisMessages(loading);
   const [demoProfiles, setDemoProfiles] = useState({});
+
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -43,11 +44,11 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
             username: name,
             score: finalScore
           }
-          
+
         })
-       
+
       );
-       console.log(data)
+      console.log(data)
       const scores = {}
       data.forEach((profile) => {
         scores[profile.username] = profile.score;
@@ -67,6 +68,9 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
     if (score <= 75) return 'green'
     else return 'blue'
   }
+
+
+
 
   return (
     <>
@@ -175,11 +179,21 @@ export function HomePage({ onSearch, searchedUser, loading, error, profileData, 
 
           <section className="main-content">
             <header className="content-headline">
-              <h2>Proof-of-Work</h2>
+              <div>
+                <h2>Proof-of-Work</h2>
               <p>Data parsed from an authenticated user profile.</p>
+              </div>
+              
+                   <Link to={`/u/${searchedUser}`} className="view-profile-btn" >
+                   View Full Profile
+                </Link>
+      
+              
+              
             </header>
-
+      
             <div className="metrics-row">
+                
               <div className="metric-card">
                 <h4>Total Stars</h4>
                 <p>{activityMetrics.totalStars}</p>

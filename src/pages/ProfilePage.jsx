@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { usePersonalProfile } from '../hooks/usePersonalProfile'
 import { Skeleton } from '../components/Skeleton'
@@ -8,10 +9,11 @@ import { calculateScore } from '../utils/proofOfWorkScore'
 import { useSuggestions } from '../hooks/useSuggestions'
 
 
-export function ProfilePage({ apiBase }) {
+export function ProfilePage({ apiBase}) {
   const { username } = useParams()
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase)
   const { suggestions, loading, fetchSuggestions } = useSuggestions(username, apiBase)
+  const [copied, setCopied] = useState(false)
 
   if (status === "loading") {
     return <Skeleton />
@@ -28,6 +30,24 @@ export function ProfilePage({ apiBase }) {
   const { finalScore, activityScore, impactScore, breadthScore, projectQualityScore,
     openSourceScore } = calculateScore(profile);
 
+
+    function handleShare()  {
+        try{
+        const link = window.location.href  
+        
+        const clip = async () => {
+          await navigator.clipboard.writeText(link)
+            setCopied(true)
+          const timer = setTimeout(()=> {
+            setCopied(false)
+          }, 2000)
+        }
+        clip()
+        }catch (error){
+          error.message
+          console.log(error.message)
+        }
+      }
   return (
     <>
       <main className='dashboard-container'>
@@ -43,6 +63,9 @@ export function ProfilePage({ apiBase }) {
 
         <section className='main-content'>
           {/* AI Banner / Button Section */}
+          <button className={`share-btn ${copied ? 'copied' : ''}`} onClick={handleShare}>
+            {copied ? 'Copied!' : 'Shared profile'}
+          </button>
           <div className='ai-suggestion-bar'>
             <div className="ai-status">
               <span className="ai-badge">
