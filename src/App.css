@@ -67,7 +67,7 @@ body {
 
 .content-headline{
   display: flex;
-  
+ justify-content: space-between; 
 }
 
 
@@ -89,7 +89,32 @@ body {
   margin: 32px 0 16px 0;
 }
 
+.view-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
+  height: 42px;
+  padding: 0 18px;
+
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+
+
+  border-radius: 8px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.view-profile-btn:hover {
+  background: var(--color-primary-hover);
+ 
+}
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -668,6 +693,34 @@ body {
 
 .error-retry-btn:hover {
   background-color: var(--color-primary-hover);
+}
+
+
+.share-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  padding: 0 18px;
+
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+
+
+  border-radius: 8px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.share-btn:hover{
+  background: var(--color-primary-hover);
 }
 /* ==========================================
    MOBILE HOMEPAGE
