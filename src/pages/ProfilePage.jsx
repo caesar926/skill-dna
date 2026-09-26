@@ -63,10 +63,9 @@ export function ProfilePage({ apiBase}) {
 
         <section className='main-content'>
           {/* AI Banner / Button Section */}
-          <button className={`share-btn ${copied ? 'copied' : ''}`} onClick={handleShare}>
-            {copied ? 'Copied!' : 'Shared profile'}
-          </button>
-          <div className='ai-suggestion-bar'>
+          
+          <div className='ai-share-container'>
+             <div className='ai-suggestion-bar'>
             <div className="ai-status">
               <span className="ai-badge">
                 <svg className="ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -74,7 +73,7 @@ export function ProfilePage({ apiBase}) {
                 </svg>
                 AI Insights
               </span>
-              {loading === "success" && <span className="ai-success-tag">Updated</span>}
+             
               {loading === "error" && <span className="ai-error-tag">Error fetching suggestions</span>}
             </div>
 
@@ -109,6 +108,12 @@ export function ProfilePage({ apiBase}) {
               )}
             </button>
           </div>
+              
+             <button className={`share-btn ${copied ? 'copied' : ''}`} onClick={handleShare}>
+            {copied ? 'Copied!' : 'Share profile'}
+          </button> 
+          </div>
+          
 
           <div className="scores-grid">
             <div className="score-card highlight">
