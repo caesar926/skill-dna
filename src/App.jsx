@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { HomePage } from './pages/HomePage.jsx';
+import { DataPage } from './pages/DataPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import { SearchBar } from './components/SearchBar';
 import { UseGitprofileData } from './hooks/UseGitprofileData.jsx';
@@ -13,10 +14,11 @@ function App() {
   const [searchedUser, setSearchedUser] = useState('');
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isHomePage = location.pathname === '/';
 
-  const showSearchBar = !isHomePage || Boolean(searchedUser) 
+  const showSearchBar = !isHomePage || Boolean(searchedUser)
 
   const [searchTrigger, setSearchTrigger] = useState(0);
   const {
@@ -30,13 +32,13 @@ function App() {
     languageCounts
   } = UseGitprofileData(searchedUser, API_BASE, searchTrigger);
 
-  
- 
-
-const handleSearch = (name) => {
-  setSearchedUser(name);
-  setSearchTrigger((t) => t + 1);
-};
+  const handleSearch = (name) => {
+    setSearchedUser(name);
+    setSearchTrigger((t) => t + 1);
+    if (location.pathname !== '/results') {
+      navigate('/results');
+    }
+  };
 
   return (
     <div className="App">
@@ -56,17 +58,26 @@ const handleSearch = (name) => {
           element={
             <HomePage
               onSearch={handleSearch}
+              isLoggedIn={isLoggedIn}
+              apiBase={API_BASE}
+            />
+          }
+        />
+
+        <Route
+          path="/results"
+          element={
+            <DataPage
               searchedUser={searchedUser}
+              onSearch={handleSearch}
               loading={loading}
               error={error}
               profileData={profileData}
               activityMetrics={activityMetrics}
-              languageCounts={languageCounts} 
+              languageCounts={languageCounts}
               total={Object.values(languageCounts).reduce((s, n) => s + n, 0)}
               pinnedRepos={pinnedRepos}
               contributionData={contributionData}
-              isLoggedIn={isLoggedIn}
-              apiBase={API_BASE}
             />
           }
         />

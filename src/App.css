@@ -100,7 +100,7 @@ body {
  background: var(--color-primary);
   color: var(--text-main);
 
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
 
   text-decoration: none;
@@ -829,6 +829,27 @@ body {
   background-color: var(--color-primary-hover);
 }
 
+.login-required-card {
+  max-width: 420px;
+  margin: 100px auto;
+  text-align: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 40px 32px;
+}
+
+.login-required-card h3 {
+  color: var(--text-main);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.login-required-card p {
+  color: var(--text-body);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
 
 .share-btn{
   display: inline-flex;
