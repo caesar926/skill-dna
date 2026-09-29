@@ -18,7 +18,7 @@ function App() {
 
   const isHomePage = location.pathname === '/';
 
-  const showSearchBar = !isHomePage || Boolean(searchedUser)
+  const showSearchBar = !isHomePage 
 
   const [searchTrigger, setSearchTrigger] = useState(0);
   const {
