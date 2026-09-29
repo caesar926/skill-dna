@@ -12,8 +12,6 @@ import { useAuthToken } from '../hooks/useAuthToken'
 export function ProfilePage({ apiBase }) {
   const { username } = useParams()
 
-  // All hooks are called unconditionally, every render, before any early return —
-  // required by React's Rules of Hooks.
   const [isLoggedIn, setIsLoggedIn, viewerUsername, checkingAuth] = useAuthToken(apiBase)
   const isOwnProfile = viewerUsername === username
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase, isOwnProfile)
@@ -41,11 +39,21 @@ export function ProfilePage({ apiBase }) {
   }
 
   if (status === "notFound") {
-    return <p>This developer hasn't claimed their profile yet</p>
+    return (
+      <div className="profile-message-card">
+        <h3>Not claimed yet</h3>
+        <p>This developer hasn't claimed their Skill DNA profile.</p>
+      </div>
+    )
   }
 
   if (status === "error") {
-    return <p>{errorMessage}</p>
+    return (
+      <div className="profile-message-card">
+        <h3>Something went wrong</h3>
+        <p>{errorMessage}</p>
+      </div>
+    )
   }
 
   const { finalScore, activityScore, impactScore, breadthScore, projectQualityScore,

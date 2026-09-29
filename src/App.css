@@ -851,6 +851,28 @@ body {
   margin-bottom: 20px;
 }
 
+.profile-message-card {
+  max-width: 420px;
+  margin: 100px auto;
+  text-align: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 40px 32px;
+}
+
+.profile-message-card h3 {
+  color: var(--text-main);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.profile-message-card p {
+  color: var(--text-body);
+  font-size: 13px;
+  margin: 0;
+}
+
 .share-btn{
   display: inline-flex;
   align-items: center;
