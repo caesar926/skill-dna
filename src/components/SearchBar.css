@@ -1,7 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
-  font-family: sans-serif;
+  font-family: Manrope, sans-serif;
   box-sizing: border-box;
 }
 
@@ -81,7 +81,7 @@
   outline: none;
   padding: 0 20px 0 48px; 
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  box-shadow: none; 
 }
 
 .input:focus {
@@ -133,7 +133,7 @@
 }
 
 .github-login-btn {
-  background-color: #24292e;
+  background-color: var(--bg-card);
   color: #ffffff;
   border: 1px solid var(--border-color);
   padding: 8px 14px;
@@ -149,7 +149,7 @@
 }
 
 .github-login-btn:hover {
-  background-color: #2f363d;
+  background-color: var(--bg-input);
   border-color: var(--color-primary);
 }
 
@@ -185,7 +185,7 @@
 }
 
 .status button:hover:not(:disabled) {
-  background-color: #1a64d4;
+  background-color: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 

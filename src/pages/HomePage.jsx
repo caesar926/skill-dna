@@ -1,131 +1,133 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AuthControl } from '../components/AuthControl';
 import { calculateScore } from '../utils/proofOfWorkScore';
+import './HomePage.css';
 
-const demoUsers = [
-  'caesar926',
-  'torvalds',
-  'gaearon',
-  'sindresorhus',
-  'addyosmani',
+const developers = [
+  'caesar926', 
+  'torvalds', 
+  'gaearon', 
+  'sindresorhus', 
+  'addyosmani', 
   'tj'
-]
+];
 
 export function HomePage({ onSearch, apiBase, isLoggedIn }) {
   const [userName, setUserName] = useState('');
-  const [demoProfiles, setDemoProfiles] = useState({});
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      onSearch(userName);
-    }
-  };
+  const [scores, setScores] = useState({});
 
   useEffect(() => {
-    const fetchDemoProfiles = async () => {
-      const data = await Promise.all(
-        demoUsers.map(async (name) => {
-          const response = await fetch(
-            `${apiBase}/api/public/profile/${name}`
-          );
-
-          const profile = await response.json()
-          const score = calculateScore(profile)
-          const finalScore = score.finalScore
-          return {
-            username: name,
-            score: finalScore
-          }
-        })
-      );
-
-      const scores = {}
-      data.forEach((profile) => {
-        scores[profile.username] = profile.score;
+    let active = true;
+    Promise.allSettled(developers.map(async (name) => {
+      const response = await fetch(`${apiBase}/api/public/profile/${name}`);
+      if (!response.ok) throw new Error('Profile unavailable');
+      return { 
+        name, 
+        score: calculateScore(await response.json()).finalScore };
+    })).then((results) => {
+      if (!active) return;
+      const next = {};
+      results.forEach((result) => {
+        if (result.status === 'fulfilled') next[result.value.name] = result.value.score;
       });
-
-      setDemoProfiles(scores);
-    };
-
-    fetchDemoProfiles()
+      setScores(next);
+    });
+    return () => { active = false; };
   }, [apiBase]);
 
-  function getScoreColor(score) {
-    if (score <= 25) return 'red'
-    if (score <= 50) return 'orange'
-    if (score <= 75) return 'green'
-    else return 'blue'
-  }
+  const search = (event) => {
+    event.preventDefault();
+    if (userName.trim()) onSearch(userName.trim());
+  };
 
   return (
-    <>
-      <div className="hero-auth-fixed">
-        <AuthControl apiBase={apiBase} authToken={isLoggedIn} />
-      </div>
-
-      <section className="homepage-hero">
-        <div className="hero-card">
-
-          <div className="hero-content">
-            <h1 className="hero-title">Developer Search</h1>
-            <p className="hero-subtitle">Search and verify developer proof-of-work scores</p>
-
-            <div className="page-search-container">
-              <img className="search-icon-inline" src="icons/search.svg" alt="" />
-              <input
-                className="page-search-input"
-                type="text"
-                placeholder="Search developer username..."
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-              <button
-                className="page-search-btn"
-                onClick={() => onSearch(userName)}
-                type="button"
-                aria-label="Search"
-              >
-                <img src="icons/search.svg" alt="Search" />
-              </button>
+    <main className="skill-home">
+      <header className="skill-home-header">
+        <a 
+        className="skill-home-brand" 
+        href="/" 
+        aria-label="SkillDNA home">
+          <span className="brand-initial">S</span>
+          <span className="brand-green">KILL</span>
+           DNA
+          </a>
+        <div className="skill-home-auth">
+          <AuthControl 
+          apiBase={apiBase} 
+          authToken={isLoggedIn} />
+        </div>
+      </header>
+      <section className="skill-home-hero" aria-labelledby="home-title">
+        <div className="skill-home-hero-inner">
+          <div className="skill-home-eyebrow">
+            <span className="skill-home-dot" /> 
+            DEVELOPER INTELLIGENCE / GITHUB
             </div>
-          </div>
+          <h1 id="home-title">Decode developer 
+            <span> DNA.</span>
+          </h1>
+           <p>
+            Look beyond the résumé. Search a GitHub username to explore real repositories, languages, and proof of work.
+            </p>
+          <form 
+          className="skill-home-search" 
+          onSubmit={search} 
+          role="search"
+          >
+          
 
-          <div className="quick-users-viewport">
-            <div className="quick-users-row">
-              {[...Array(2)].flatMap((_, dup) =>
-                demoUsers.map((name) => {
-                  const score = demoProfiles[name];
-
-                  return (
-                    <button
-                      key={`${name}-${dup}`}
-                      type="button"
-                      className="quick-user-card"
-                      onClick={() => onSearch(name)}
-                    >
-                      <img
-                        src={`https://github.com/${name}.png`}
-                        alt={name}
-                        className="quick-user-avatar"
-                      />
-
-                      <span className="quick-user-name">{name}</span>
-
-                      {score !== undefined && (
-                        <span className={`quick-user-score ${getScoreColor(score)}`}>
-                          <div><span className='span'>Proof of work .</span> {Math.round(score)}</div>
-                        </span>
-                      )}
-                    </button>
-                  );
-                })
-              )}
-            </div>
+            <input 
+            type="text" 
+            aria-label="GitHub username" placeholder="Enter a GitHub username" 
+            value={userName} 
+            onChange={(event) => setUserName(event.target.value)} 
+            autoComplete="off" 
+            />
+            <button 
+            type="submit"
+            >Analyze
+            </button>
+          </form>
+          <div className="skill-home-note">
+            PUBLIC GITHUB PROFILES · NO SIGN-IN NEEDED TO SEARCH
           </div>
         </div>
       </section>
-    </>
+      <section className="skill-home-discover" aria-labelledby="discover-title">
+        <div className="skill-home-heading"><div>
+          <h2 id="discover-title">Explore developers</h2>
+          </div>
+          </div>
+        <div className="skill-home-carousel" aria-label="Developer profiles">
+          <div className="quick-users-viewport">
+            <div className="quick-users-row">
+               <div className="skill-home-track">
+            {[...developers, ...developers].map((name, index) => (
+              <button 
+              type="button" 
+              className="skill-home-card" 
+              key={`${name}-${index}`} 
+              onClick={() => onSearch(name)} 
+              aria-label={`Analyze ${name}`} 
+              tabIndex={index < developers.length ? 0 : -1}>
+                <span className="skill-home-card-top">
+                  <img 
+                  src={`https://github.com/${name}.png`} alt="" 
+                  loading="lazy" />
+                  <span aria-hidden="true"></span>
+                  </span>
+                <span className="skill-home-card-name">{name}</span>
+                <span className="skill-home-card-kind">GITHUB PROFILE</span>
+                <span className="skill-home-card-bottom"><span>PROOF OF WORK</span><strong>{Number.isFinite(scores[name]) ? Math.round(scores[name]) : '—'}</strong></span>
+              </button>
+            ))}
+          </div>
+            </div>
+          </div>
+         
+        </div>
+      </section>
+    </main>
   );
 }
 
