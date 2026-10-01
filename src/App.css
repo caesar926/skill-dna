@@ -620,7 +620,7 @@ body {
   background: var(--color-primary-hover);
 }
 
-/* Profile scorecard: one match-card surface for the overall rating and attributes. */
+
 .player-scorecard {
   margin-bottom: 32px;
   max-width: 760px;
@@ -793,4 +793,11 @@ body {
   .player-scorecard-statline span {
     font-size: 11px;
   }
+}
+
+
+.repo-grid {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }

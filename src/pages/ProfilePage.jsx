@@ -12,8 +12,6 @@ import { useAuthToken } from '../hooks/useAuthToken'
 export function ProfilePage({ apiBase }) {
   const { username } = useParams()
 
-  // All hooks are called unconditionally, every render, before any early return —
-  // required by React's Rules of Hooks.
   const [isLoggedIn, , viewerUsername, checkingAuth] = useAuthToken(apiBase)
   const isOwnProfile = viewerUsername === username
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase, isOwnProfile)
@@ -166,7 +164,8 @@ export function ProfilePage({ apiBase }) {
           </section>
 
           {(profile.data?.pinnedItems?.nodes ?? []).map((repo) => (
-            <RepoCard
+            <div className="repo-grid">
+                   <RepoCard
               key={repo.id}
               repo={{
                 html_url: repo.url,
@@ -177,6 +176,8 @@ export function ProfilePage({ apiBase }) {
                 forks_count: repo.forkCount,
               }}
             />
+            </div>
+       
           ))}
         </section>
       </main>
