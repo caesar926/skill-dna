@@ -386,11 +386,8 @@
   .letter-D {
     font-size: 20px;
   }
-}
 
-@media (max-width: 310px) {
   .left {
     display: none;
   }
 }
-

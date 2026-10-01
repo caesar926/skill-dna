@@ -16,7 +16,7 @@ export function DevProfile({ profile }) {
       <h2 className="profile-username">@{profile.login}</h2>
      
       <p className="profile-bio">
-        {profile.bio || 'React & JavaScript Developer. Building clean UIs with plain CSS.'}
+        {profile.bio || 'Software Developer.'}
       </p>
 
       <div className="profile-meta">
