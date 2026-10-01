@@ -12,7 +12,9 @@ import { useAuthToken } from '../hooks/useAuthToken'
 export function ProfilePage({ apiBase }) {
   const { username } = useParams()
 
-  const [isLoggedIn, setIsLoggedIn, viewerUsername, checkingAuth] = useAuthToken(apiBase)
+  // All hooks are called unconditionally, every render, before any early return —
+  // required by React's Rules of Hooks.
+  const [isLoggedIn, , viewerUsername, checkingAuth] = useAuthToken(apiBase)
   const isOwnProfile = viewerUsername === username
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase, isOwnProfile)
   const { suggestions, loading, fetchSuggestions } = useSuggestions(username, apiBase)
@@ -39,21 +41,11 @@ export function ProfilePage({ apiBase }) {
   }
 
   if (status === "notFound") {
-    return (
-      <div className="profile-message-card">
-        <h3>Not claimed yet</h3>
-        <p>This developer hasn't claimed their Skill DNA profile.</p>
-      </div>
-    )
+    return <p>This developer hasn't claimed their profile yet</p>
   }
 
   if (status === "error") {
-    return (
-      <div className="profile-message-card">
-        <h3>Something went wrong</h3>
-        <p>{errorMessage}</p>
-      </div>
-    )
+    return <p>{errorMessage}</p>
   }
 
   const { finalScore, activityScore, impactScore, breadthScore, projectQualityScore,
@@ -142,62 +134,36 @@ export function ProfilePage({ apiBase }) {
             </button>
           </div>
 
-          <div className="scores-grid">
-            <div className="score-card highlight">
-              <span className="score-label">Final Score</span>
-              <span className="score-value">{Math.round(finalScore)}</span>
+          <section className="player-scorecard" aria-label="Proof of work scorecard">
+            <div className="player-scorecard-topline">
+              <span>SKILLDNA / PROOF OF WORK</span><span>DEVELOPER CARD</span>
             </div>
-
-            <div className="score-card">
-              <span className="score-label">Impact Score</span>
-              <span className="score-value">{Math.round(impactScore)}</span>
-              {suggestions?.impactScore && (
-                <div className="suggestion-box">
-                  <p className="suggestion-text">{suggestions.impactScore}</p>
+            <div className="player-scorecard-identity">
+              <div className="player-scorecard-overall">
+                <span className="player-scorecard-number">{Math.round(finalScore)}</span>
+                <span className="player-scorecard-caption">FINAL SCORE</span>
+              </div>
+              <div className="player-scorecard-person">
+                {profile.data?.avatarUrl && <img src={profile.data.avatarUrl} alt="" className="player-scorecard-avatar" />}
+                <div className="player-scorecard-handle">@{profile.github_username}</div>
+                <div className="player-scorecard-role">GITHUB DEVELOPER</div>
+              </div>
+            </div>
+            <div className="player-scorecard-stats">
+              {[
+                { label: 'Impact', value: impactScore, note: suggestions?.impactScore },
+                { label: 'Activity', value: activityScore, note: suggestions?.activityScore },
+                { label: 'Breadth', value: breadthScore, note: suggestions?.breadthScore },
+                { label: 'Open source', value: openSourceScore, note: suggestions?.openSourceScore },
+                { label: 'Project quality', value: projectQualityScore, note: suggestions?.projectQualityScore },
+              ].map(({ label, value, note }) => (
+                <div className="player-scorecard-stat" key={label}>
+                  <div className="player-scorecard-statline"><strong>{Math.round(value)}</strong><span>{label}</span></div>
+                  {note && <p className="player-scorecard-note">{note}</p>}
                 </div>
-              )}
+              ))}
             </div>
-
-            <div className="score-card">
-              <span className="score-label">Activity Score</span>
-              <span className="score-value">{Math.round(activityScore)}</span>
-              {suggestions?.activityScore && (
-                <div className="suggestion-box">
-                  <p className="suggestion-text">{suggestions.activityScore}</p>
-                </div>
-              )}
-            </div>
-
-            <div className="score-card">
-              <span className="score-label">Breadth score</span>
-              <span className="score-value">{Math.round(breadthScore)}</span>
-              {suggestions?.breadthScore && (
-                <div className="suggestion-box">
-                  <p className="suggestion-text">{suggestions.breadthScore}</p>
-                </div>
-              )}
-            </div>
-
-            <div className="score-card">
-              <span className="score-label">Open source score</span>
-              <span className="score-value">{Math.round(openSourceScore)}</span>
-              {suggestions?.openSourceScore && (
-                <div className="suggestion-box">
-                  <p className="suggestion-text">{suggestions.openSourceScore}</p>
-                </div>
-              )}
-            </div>
-
-            <div className="score-card">
-              <span className="score-label">Project Quality score</span>
-              <span className="score-value">{Math.round(projectQualityScore)}</span>
-              {suggestions?.projectQualityScore && (
-                <div className="suggestion-box">
-                  <p className="suggestion-text">{suggestions.projectQualityScore}</p>
-                </div>
-              )}
-            </div>
-          </div>
+          </section>
 
           {(profile.data?.pinnedItems?.nodes ?? []).map((repo) => (
             <RepoCard
