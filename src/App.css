@@ -57,7 +57,7 @@ body {
 
 .dashboard-container {
   display: grid;
-  grid-template-columns: 280px 1fr; 
+  grid-template-columns: 280px 1fr;
   gap: 32px;
   padding: 110px 40px 40px 40px;
   max-width: 1500px;
@@ -65,9 +65,9 @@ body {
   margin: 0 auto;
 }
 
-.content-headline{
+.content-headline {
   display: flex;
- justify-content: space-between; 
+  justify-content: space-between;
 }
 
 
@@ -97,7 +97,7 @@ body {
   height: 42px;
   padding: 0 18px;
 
- background: var(--color-primary);
+  background: var(--color-primary);
   color: var(--text-main);
 
   border: none;
@@ -115,6 +115,7 @@ body {
 .view-profile-btn:hover {
   background: var(--color-primary-hover);
 }
+
 @media (max-width: 600px) {
   .content-headline {
     align-items: flex-start;
@@ -127,6 +128,7 @@ body {
     font-size: 12px;
   }
 }
+
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -148,7 +150,7 @@ body {
 
 @media (max-width: 900px) {
   .dashboard-container {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     padding: 100px 20px 20px 20px;
     gap: 24px;
   }
@@ -248,7 +250,7 @@ body {
   color: #fff;
   padding: 10px 18px;
   border-radius: 6px;
- font-weight : 600;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -449,57 +451,6 @@ body {
 }
 
 
-/* Share button */
-
-.share-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 42px;
-  padding: 0 18px;
-
-  background: transparent;
-  color: var(--text-main);
-
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.share-btn:hover {
-  background: var(--bg-card);
-  border-color: var(--color-primary);
-  color: var(--text-main);
-
-  transform: translateY(-1px);
-}
-
-.share-btn:active {
-  transform: translateY(0);
-}
-
-
-/* Copied state */
-
-.share-btn.copied {
-  background: rgba(46, 160, 67, 0.12);
-  border-color: var(--color-primary);
-  color: var(--color-success);
-}
-
 
 /* ==========================================
    MOBILE
@@ -550,12 +501,21 @@ body {
 
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .error-state-card {
@@ -633,7 +593,7 @@ body {
   margin-bottom: 20px;
 }
 
-.share-btn{
+.share-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -656,28 +616,181 @@ body {
   cursor: pointer;
 }
 
-.share-btn:hover{
+.share-btn:hover {
   background: var(--color-primary-hover);
 }
 
-.profile-message-card {
-  max-width: 420px;
-  margin: 100px auto;
-  text-align: center;
-  background-color: var(--bg-card);
+/* Profile scorecard: one match-card surface for the overall rating and attributes. */
+.player-scorecard {
+  margin-bottom: 32px;
+  max-width: 760px;
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
+  border-top: 3px solid var(--color-primary);
   border-radius: var(--card-radius);
-  padding: 40px 32px;
+  overflow: hidden;
 }
 
-.profile-message-card h3 {
+.player-scorecard-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 24px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.player-scorecard-identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 30px 28px 28px;
+}
+
+.player-scorecard-overall {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.player-scorecard-number {
   color: var(--text-main);
-  font-size: 17px;
-  margin-bottom: 8px;
+  font-family: Sora, Manrope, sans-serif;
+  font-size: clamp(64px, 8vw, 100px);
+  font-weight: 700;
+  line-height: 1;
 }
 
-.profile-message-card p {
-  color: var(--text-body);
+.player-scorecard-caption {
+  margin-top: 8px;
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.player-scorecard-person {
+  min-width: 0;
+  text-align: right;
+}
+
+.player-scorecard-avatar {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  margin: 0 0 12px auto;
+}
+
+.player-scorecard-handle {
+  overflow-wrap: anywhere;
+  color: var(--text-main);
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.player-scorecard-role {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.player-scorecard-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border-color);
+  padding: 10px 24px 20px;
+}
+
+.player-scorecard-stat {
+  min-width: 0;
+  padding: 17px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.player-scorecard-stat:nth-child(odd) {
+  border-right: 1px solid var(--border-color);
+}
+
+.player-scorecard-stat:last-child {
+  border-bottom: 0;
+}
+
+.player-scorecard-statline {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.player-scorecard-statline strong {
+  color: var(--color-primary);
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.player-scorecard-statline span {
+  color: var(--text-main);
   font-size: 13px;
-  margin: 0;
+  font-weight: 600;
+}
+
+.player-scorecard-note {
+  margin-top: 10px;
+  color: var(--text-body);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .player-scorecard-topline {
+    padding: 14px 16px;
+    font-size: 9px;
+  }
+
+  .player-scorecard-identity {
+    padding: 22px 18px;
+    gap: 10px;
+  }
+
+  .player-scorecard-number {
+    font-size: 65px;
+  }
+
+  .player-scorecard-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .player-scorecard-handle {
+    font-size: 14px;
+  }
+
+  .player-scorecard-stats {
+    padding: 4px 10px 12px;
+  }
+
+  .player-scorecard-stat {
+    padding: 15px 9px;
+  }
+
+  .player-scorecard-statline {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .player-scorecard-statline strong {
+    font-size: 21px;
+  }
+
+  .player-scorecard-statline span {
+    font-size: 11px;
+  }
 }

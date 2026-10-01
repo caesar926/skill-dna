@@ -33,23 +33,22 @@
   margin-bottom: 0px;
 }
 
-.cred{
+.cred {
   color: white;
 }
 
-.letter-S{
-    font-size:40px;
-    background-color: var(--bg-card);
-    border: 1px solid ;
-    border-radius: var(--card-radius);
-    padding: 1px 5px;
-   color: var(--color-primary);
+.letter-S {
+  font-size: 40px;
+  background-color: var(--bg-card);
+  border: 1px solid;
+  border-radius: var(--card-radius);
+  padding: 1px 5px;
+  color: var(--color-primary);
 }
 
-.rest-of-logo
-{
+.rest-of-logo {
   color: var(--color-primary);
-   
+
 }
 
 .left-subText {
@@ -65,7 +64,8 @@
   align-items: center;
   position: relative;
   max-width: 520px;
-  margin: 0 auto; /* Centers container horizontally between left and right sections */
+  margin: 0 auto;
+  /* Centers container horizontally between left and right sections */
 }
 
 
@@ -77,16 +77,16 @@
   color: var(--text-main);
   font-size: 14px;
   border: 1px solid var(--border-color);
-  border-radius: 10px; 
+  border-radius: 10px;
   outline: none;
-  padding: 0 20px 0 48px; 
+  padding: 0 20px 0 48px;
   transition: all 0.2s ease;
-  box-shadow: none; 
+  box-shadow: none;
 }
 
 .input:focus {
   border-color: var(--color-primary);
-  
+
 }
 
 .input::placeholder {
@@ -98,7 +98,7 @@
   right: 5px;
   top: 6px;
   position: absolute;
-  
+
   width: 32px;
   height: 32px;
   background: var(--color-primary);
@@ -203,7 +203,7 @@
 }
 
 /* Success Badge Indicator */
-.status > span {
+.status>span {
   font-size: 12px;
   font-weight: 500;
   color: var(--color-success);
@@ -248,7 +248,7 @@
     padding: 4px 8px;
     font-size: 10px;
   }
- 
+
   /* Auto-hide static badge on narrow screens to prevent header overflow */
   .auth-badge {
     display: none;
@@ -278,7 +278,7 @@
     padding: 12px 20px;
   }
 
-  .left{
+  .left {
     margin-left: 10px;
   }
 
@@ -286,9 +286,9 @@
     font-size: 21px;
   }
 
-  .letter-S{
-    font-size:26px;
-}
+  .letter-S {
+    font-size: 26px;
+  }
 
   .left-subText {
     font-size: 9px;
@@ -298,7 +298,7 @@
     padding-left: 50px;
   }
 
-  .searchBtn{
+  .searchBtn {
     margin-left: 4px;
   }
 
@@ -328,9 +328,9 @@
     font-size: 20px;
   }
 
-  .letter-S{
-    font-size:25px;
-}
+  .letter-S {
+    font-size: 25px;
+  }
 
   .middle {
     width: 100%;
@@ -357,7 +357,7 @@
     gap: 8px;
   }
 
-  
+
 }
 
 @media (max-width: 530px) {
@@ -427,7 +427,7 @@
     font-size: 9px;
     left: 12px;
     top: -3px;
-   
+
   }
 
   .searchBtn {
@@ -449,29 +449,128 @@
 
 }
 
-@media (max-width: 380px){
-  .cred, .rest-of-logo{
+@media (max-width: 380px) {
+
+  .cred,
+  .rest-of-logo {
     display: none;
   }
 
-  .letter-D{
-    font-size:20px;
+  .letter-D {
+    font-size: 20px;
   }
 
-  .left-subText{
+  .left-subText {
     display: none;
   }
 }
 
-@media (max-width: 310px){
-  .left{
+@media (max-width: 310px) {
+  .left {
     display: none;
   }
 
 }
 
-@media (max-width: 210px){
-  .left{
+@media (max-width: 210px) {
+  .left {
     display: none;
+  }
+}
+
+/* Data-page header actions share a consistent mobile size in every claim state. */
+@media (max-width: 650px) {
+  .header .right {
+    width: auto;
+    flex-shrink: 0;
+    gap: 0;
+  }
+
+  .header .auth-badge {
+    display: none;
+  }
+
+  .header .middle {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .header .github-login-btn,
+  .header .status>button,
+  .header .status>span,
+  .header .status div button {
+    position: static;
+    top: auto;
+    right: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-height: 36px;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    border-radius: 5px;
+  }
+
+  .header .status {
+    min-width: 0;
+  }
+
+  .header .status div {
+    max-width: 150px;
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 435px) {
+
+  .header .github-login-btn,
+  .header .status>button,
+  .header .status>span,
+  .header .status div button {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 650px) {
+  .header .status div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .header .claim-error {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .header .status div button,
+  .header .status div button:hover {
+    color: var(--text-main);
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+  }
+}
+
+@media (max-width: 650px) {
+  .header .input {
+    min-width: 0;
+    text-overflow: ellipsis;
+    padding-right: 39px;
+  }
+
+  .header .searchBtn {
+    z-index: 1;
   }
 }
