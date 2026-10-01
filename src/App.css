@@ -2,17 +2,14 @@
   --bg-main: #101213;
   --bg-card: #1D2122;
   --bg-input: #262B2D;
-
   --color-primary: #2ea043;
   --color-primary-hover: #3fb950;
   --color-success: #3fb950;
   --color-secondary: #A7B0AD;
   --color-streak: #56d364;
-
   --text-main: #E8EBEA;
   --text-body: #A7B0AD;
   --text-muted: #84908B;
-
   --border-color: #394041;
   --card-radius: 8px;
 }
@@ -55,14 +52,15 @@ body {
   min-height: 20px;
 }
 
+/* Dashboard */
 .dashboard-container {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 32px;
-  padding: 110px 40px 40px 40px;
-  max-width: 1500px;
   width: 100%;
+  max-width: 1500px;
   margin: 0 auto;
+  padding: 110px 40px 40px;
 }
 
 .content-headline {
@@ -70,63 +68,44 @@ body {
   justify-content: space-between;
 }
 
-
 .content-headline h2 {
-  font-size: 24px;
-  color: var(--text-main);
   margin-bottom: 4px;
+  color: var(--text-main);
+  font-size: 24px;
 }
 
 .content-headline p {
+  margin-bottom: 24px;
   color: var(--text-body);
   font-size: 14px;
-  margin-bottom: 24px;
 }
 
 .section-title {
+  margin: 32px 0 16px;
   color: var(--text-main);
   font-size: 18px;
-  margin: 32px 0 16px 0;
 }
 
 .view-profile-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 42px;
   padding: 0 18px;
-
   background: var(--color-primary);
   color: var(--text-main);
-
   border: none;
   border-radius: 8px;
-
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .view-profile-btn:hover {
   background: var(--color-primary-hover);
-}
-
-@media (max-width: 600px) {
-  .content-headline {
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .view-profile-btn {
-    height: 38px;
-    padding: 0 14px;
-    font-size: 12px;
-  }
 }
 
 .metrics-row {
@@ -135,28 +114,20 @@ body {
   gap: 20px;
 }
 
-
+/* Repo cards */
 .repo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .status-msg {
-  text-align: center;
   padding: 80px;
   color: var(--text-body);
+  text-align: center;
 }
 
-@media (max-width: 900px) {
-  .dashboard-container {
-    grid-template-columns: 1fr;
-    padding: 100px 20px 20px 20px;
-    gap: 24px;
-  }
-}
-
-/* Interactive Click States for Header Actions */
+/* Dashboard actions */
 .dashboard-pack {
   cursor: pointer;
   transition: opacity 0.2s ease, transform 0.1s ease;
@@ -176,51 +147,48 @@ body {
   transform: scale(0.97);
 }
 
-/* Modal Popup Overlay */
+/* Modal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  inset: 0;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(4px);
 }
 
 .modal-content {
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
-  padding: 32px;
-  width: 100%;
-  max-width: 480px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
 .modal-content h3 {
-  color: var(--text-main);
   margin-bottom: 8px;
+  color: var(--text-main);
   font-size: 20px;
 }
 
 .modal-content p {
+  margin-bottom: 20px;
   color: var(--text-body);
   font-size: 14px;
-  margin-bottom: 20px;
 }
 
 .modal-input {
   width: 100%;
+  margin-bottom: 12px;
+  padding: 12px;
   background-color: var(--bg-input);
   border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 12px;
   border-radius: 6px;
-  margin-bottom: 12px;
+  color: var(--text-main);
   font-size: 14px;
 }
 
@@ -236,25 +204,25 @@ body {
 }
 
 .btn-cancel {
+  padding: 10px 16px;
   background: transparent;
   border: 1px solid var(--border-color);
-  color: var(--text-body);
-  padding: 10px 16px;
   border-radius: 6px;
+  color: var(--text-body);
   cursor: pointer;
 }
 
 .btn-submit {
-  background-color: var(--color-primary);
-  border: none;
-  color: #fff;
   padding: 10px 18px;
+  background: var(--color-primary);
+  border: none;
   border-radius: 6px;
+  color: #fff;
   font-weight: 600;
   cursor: pointer;
 }
 
-/* Proof of Work Scores Styling */
+/* Proof of Work */
 .scores-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -263,21 +231,20 @@ body {
 }
 
 .score-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--card-radius);
-  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  padding: 18px 20px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-
 .score-label {
+  color: var(--text-body);
   font-size: 13px;
   font-weight: 500;
-  color: var(--text-body);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -287,13 +254,13 @@ body {
 }
 
 .score-value {
+  color: var(--text-main);
   font-size: 32px;
   font-weight: 700;
-  color: var(--text-main);
   line-height: 1;
 }
 
-
+/* AI + Share */
 .ai-share-container {
   display: flex;
   align-items: center;
@@ -303,24 +270,17 @@ body {
   margin-bottom: 24px;
 }
 
-/* AI section */
-
 .ai-suggestion-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-
   flex: 1;
-
+  gap: 18px;
+  min-width: 0;
+  padding: 10px 12px 10px 16px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
-
-  padding: 10px 12px 10px 16px;
-
-  min-width: 0;
-
   backdrop-filter: blur(8px);
 }
 
@@ -335,11 +295,9 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-
+  color: var(--text-main);
   font-size: 14px;
   font-weight: 600;
-
-  color: var(--text-main);
   letter-spacing: 0.3px;
 }
 
@@ -350,47 +308,31 @@ body {
 }
 
 .ai-error-tag {
-  font-size: 11px;
   padding: 3px 8px;
-
-  border-radius: 12px;
-
   background: rgba(239, 68, 68, 0.12);
-  color: #f87171;
-
   border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  color: #f87171;
+  font-size: 11px;
 }
-
-
-/* AI button */
 
 .ai-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-
   height: 40px;
   padding: 0 16px;
-
   background: var(--color-primary);
-  color: #ffffff;
-
   border: 1px solid var(--color-primary);
   border-radius: 7px;
-
+  color: #fff;
   font-size: 13px;
   font-weight: 600;
-
   cursor: pointer;
-
   white-space: nowrap;
-
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ai-btn svg {
@@ -401,9 +343,7 @@ body {
 .ai-btn:hover:not(:disabled) {
   background: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
-
   transform: translateY(-1px);
-
   box-shadow: 0 4px 14px transparent;
 }
 
@@ -422,26 +362,10 @@ body {
   color: var(--color-primary);
 }
 
-.spinner {
-  width: 14px;
-  height: 14px;
-
-  border: 2px solid rgba(46, 160, 67, 0.25);
-  border-top-color: var(--color-primary);
-
-  border-radius: 50%;
-
-  animation: spin 0.8s linear infinite;
-}
-
-
-/* Successful state */
-
 .ai-btn.is-success {
   background: var(--bg-card);
   border-color: var(--border-color);
   color: var(--text-body);
-
   box-shadow: none;
 }
 
@@ -450,39 +374,16 @@ body {
   color: var(--text-main);
 }
 
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 600px) {
-
-  .ai-share-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  .ai-suggestion-bar {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .ai-btn {
-    padding: 0 12px;
-    font-size: 12px;
-  }
-
-  .share-btn {
-    width: 100%;
-  }
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(46, 160, 67, 0.25);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
-/* ==========================================
-   AI Suggestion Text Box Inside Cards
-========================================== */
-
+/* Suggestions */
 .suggestion-box {
   margin-top: 10px;
   padding: 10px 12px;
@@ -493,74 +394,59 @@ body {
 }
 
 .suggestion-text {
+  margin: 0;
+  color: var(--text-body);
   font-size: 12px;
   line-height: 1.45;
-  color: var(--text-body);
-  margin: 0;
 }
 
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.error-state-card {
+/* Error / Login */
+.error-state-card,
+.login-required-card {
   max-width: 420px;
   margin: 100px auto;
-  text-align: center;
+  padding: 40px 32px;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
-  padding: 40px 32px;
+  text-align: center;
+}
+
+.error-state-card h3,
+.login-required-card h3 {
+  margin-bottom: 8px;
+  color: var(--text-main);
+  font-size: 17px;
+}
+
+.error-state-card p,
+.login-required-card p {
+  margin-bottom: 20px;
+  color: var(--text-body);
+  font-size: 13px;
 }
 
 .error-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  background: rgba(248, 113, 113, 0.15);
-  border: 1px solid #f87171;
-  color: #f87171;
-  font-size: 22px;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.error-state-card h3 {
-  color: var(--text-main);
-  font-size: 17px;
-  margin-bottom: 8px;
-}
-
-.error-state-card p {
-  color: var(--text-body);
-  font-size: 13px;
-  margin-bottom: 20px;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid #f87171;
+  border-radius: 50%;
+  color: #f87171;
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .error-retry-btn {
-  background-color: var(--color-primary);
-  color: #fff;
-  border: none;
   padding: 10px 20px;
+  background-color: var(--color-primary);
+  border: none;
   border-radius: 6px;
+  color: #fff;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -571,64 +457,36 @@ body {
   background-color: var(--color-primary-hover);
 }
 
-.login-required-card {
-  max-width: 420px;
-  margin: 100px auto;
-  text-align: center;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--card-radius);
-  padding: 40px 32px;
-}
-
-.login-required-card h3 {
-  color: var(--text-main);
-  font-size: 17px;
-  margin-bottom: 8px;
-}
-
-.login-required-card p {
-  color: var(--text-body);
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-
+/* Share */
 .share-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 42px;
   padding: 0 18px;
-
   background-color: var(--color-primary);
-  color: #fff;
   border: none;
-
-
   border-radius: 8px;
-
-  text-decoration: none;
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
-
-  transition: all 0.2s ease;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .share-btn:hover {
   background: var(--color-primary-hover);
 }
 
-
+/* Player Scorecard */
 .player-scorecard {
-  margin-bottom: 32px;
   max-width: 760px;
+  margin-bottom: 32px;
+  overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-top: 3px solid var(--color-primary);
   border-radius: var(--card-radius);
-  overflow: hidden;
 }
 
 .player-scorecard-topline {
@@ -680,10 +538,10 @@ body {
   display: block;
   width: 64px;
   height: 64px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--border-color);
   margin: 0 0 12px auto;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
 }
 
 .player-scorecard-handle {
@@ -704,8 +562,8 @@ body {
 .player-scorecard-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--border-color);
   padding: 10px 24px 20px;
+  border-top: 1px solid var(--border-color);
 }
 
 .player-scorecard-stat {
@@ -749,7 +607,66 @@ body {
   overflow-wrap: anywhere;
 }
 
+/* Keyframes */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    padding: 100px 20px 20px;
+    gap: 24px;
+  }
+}
+
 @media (max-width: 600px) {
+  .content-headline {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .view-profile-btn {
+    height: 38px;
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  .ai-share-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .ai-suggestion-bar,
+  .share-btn {
+    width: 100%;
+  }
+
+  .ai-suggestion-bar {
+    box-sizing: border-box;
+  }
+
+  .ai-btn {
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
   .player-scorecard-topline {
     padding: 14px 16px;
     font-size: 9px;
@@ -793,11 +710,4 @@ body {
   .player-scorecard-statline span {
     font-size: 11px;
   }
-}
-
-
-.repo-grid {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
 }
