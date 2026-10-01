@@ -1,36 +1,32 @@
 * {
-  margin: 0px;
-  padding: 0px;
-  font-family: Manrope, sans-serif;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: Manrope, sans-serif;
 }
 
 .header {
   background: var(--bg-card);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   height: 80px;
-
+  padding: 0 10px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-
-  padding: 0px 10px;
-
 }
 
-
 .left {
-  align-items: center;
   margin-left: 60px;
+  align-items: center;
 }
 
 .left-header {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .cred {
@@ -39,7 +35,7 @@
 
 .letter-S {
   font-size: 40px;
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid;
   border-radius: var(--card-radius);
   padding: 1px 5px;
@@ -48,7 +44,6 @@
 
 .rest-of-logo {
   color: var(--color-primary);
-
 }
 
 .left-subText {
@@ -56,59 +51,52 @@
   font-size: 13px;
 }
 
-/* Center Search Container */
+/* Search */
 .middle {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   max-width: 520px;
   margin: 0 auto;
-  /* Centers container horizontally between left and right sections */
+  position: relative;
 }
-
 
 .input {
   width: 100%;
-  max-width: 520px;
   height: 44px;
+  max-width: 520px;
+  padding: 0 48px 0 20px;
   background: var(--bg-input);
   color: var(--text-main);
-  font-size: 14px;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   outline: none;
-  padding: 0 20px 0 48px;
-  transition: all 0.2s ease;
-  box-shadow: none;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
 }
 
 .input:focus {
   border-color: var(--color-primary);
-
 }
 
 .input::placeholder {
   color: var(--text-muted);
 }
 
-/* Search Icon Button inside the Input */
 .searchBtn {
-  right: 5px;
-  top: 6px;
   position: absolute;
-
+  top: 6px;
+  right: 5px;
   width: 32px;
   height: 32px;
-  background: var(--color-primary);
-  border-radius: 25%;
-  border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 25%;
+  cursor: pointer;
 }
 
 .img {
@@ -123,69 +111,58 @@
   opacity: 1;
 }
 
+/* Right side */
 .right {
   flex-shrink: 0;
-  display: flex;
-  justify-content: end;
   width: 350px;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 18px;
 }
 
 .github-login-btn {
-  background-color: var(--bg-card);
-  color: #ffffff;
-  border: 1px solid var(--border-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px 14px;
+  background: var(--bg-card);
+  color: #fff;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .github-login-btn:hover {
-  background-color: var(--bg-input);
+  background: var(--bg-input);
   border-color: var(--color-primary);
 }
 
-
-.auth-badge {
-  font-size: 12px;
-  color: var(--color-success);
-  background-color: rgba(44, 167, 80, 0.1);
-  border: 1px solid var(--color-success);
-  padding: 4px 10px;
-  border-radius: 5px;
-  white-space: nowrap;
-}
-
-/* Container for Claim Profile States */
+/* Claim status */
 .status {
   display: inline-flex;
   align-items: center;
 }
 
-/* Base Claim Button Styling */
 .status button {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border: none;
   padding: 8px 14px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
   border-radius: 5px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .status button:hover:not(:disabled) {
-  background-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 
@@ -193,86 +170,48 @@
   transform: scale(0.97);
 }
 
-/* Disabled Loading State */
 .status button:disabled {
-  background-color: var(--bg-input);
+  background: var(--bg-input);
   color: var(--text-muted);
   border: 1px solid var(--border-color);
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-/* Success Badge Indicator */
-.status>span {
+.status > span,
+.auth-badge {
+  padding: 5px 12px;
+  color: var(--color-success);
+  background: rgba(44, 167, 80, 0.12);
+  border: 1px solid var(--color-success);
+  border-radius: 5px;
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-success);
-  background-color: rgba(44, 167, 80, 0.12);
-  border: 1px solid var(--color-success);
-  padding: 5px 12px;
-  border-radius: 5px;
   white-space: nowrap;
 }
 
-/* Error State Container & Retry Button */
 .status div {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
   color: #f87171;
+  font-size: 12px;
 }
 
 .status div button {
-  background-color: transparent;
+  padding: 4px 8px;
+  background: transparent;
   border: 1px solid #f87171;
   color: #f87171;
-  padding: 4px 8px;
   font-size: 11px;
 }
 
 .status div button:hover {
-  background-color: rgba(248, 113, 113, 0.15);
+  background: rgba(248, 113, 113, 0.15);
 }
 
-/* Responsive Scaling */
-@media (max-width: 650px) {
-  .status button {
-    padding: 6px 10px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 435px) {
-  .status button {
-    padding: 4px 8px;
-    font-size: 10px;
-  }
-
-  /* Auto-hide static badge on narrow screens to prevent header overflow */
-  .auth-badge {
-    display: none;
-  }
-}
-
-
-@media (max-width: 650px) {
-  .github-login-btn {
-    padding: 6px 10px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 435px) {
-  .github-login-btn {
-    padding: 4px 8px;
-    font-size: 5px;
-  }
-}
-
-
+/* Responsive */
 @media (max-width: 900px) {
-
   .header {
     gap: 15px;
     padding: 12px 20px;
@@ -294,32 +233,22 @@
     font-size: 9px;
   }
 
-  .input {
-    padding-left: 50px;
-  }
-
-  .searchBtn {
-    margin-left: 4px;
-  }
-
   .right {
+    width: auto;
     gap: 12px;
   }
 
-  .right {
-    width: auto;
+  .input {
+    padding-left: 50px;
   }
 }
 
-
 @media (max-width: 650px) {
-
   .header {
     gap: 10px;
-    height: 80px;
-    padding: 0px 10px;
+    padding: 0 10px;
   }
-
+  
   .left {
     margin-left: 5px;
   }
@@ -333,217 +262,51 @@
   }
 
   .middle {
-    width: 100%;
+    min-width: 0;
     max-width: none;
   }
 
-  .searchBtn {
-    right: 5px;
-    margin-left: 11px;
-
-  }
-
-  img {
-    height: 20px;
-    width: 20px;
-  }
-
-  .input {
-    padding: 11px 23px 11px 35px;
-    font-size: 11px;
-  }
-
   .right {
+    width: auto;
     gap: 8px;
   }
 
-
-}
-
-@media (max-width: 530px) {
-
-  .header {
-    gap: 10px;
-    height: 80px;
-    padding: 0px 10px;
-  }
-
-  .left {
-    margin-left: 5px;
-  }
-
-  .left-header {
-    font-size: 16px;
-  }
-
-  .middle {
-    width: 100%;
-    max-width: none;
-  }
-
-  .searchBtn {
-    right: 5px;
-    margin-left: 11px;
-
-  }
-
-  img {
-    height: 17px;
-    width: 17px;
-  }
-
   .input {
-    padding: 9px 20px 9px 30px;
+    min-width: 0;
+    padding: 11px 39px 11px 35px;
     font-size: 11px;
-  }
-
-  .right {
-    gap: 8px;
-  }
-
-
-}
-
-
-@media (max-width: 435px) {
-
-  .header {
-    gap: 10px;
-    height: 60px;
-    padding: 0px 10px;
-  }
-
-  .left-header {
-    font-size: 19px;
-  }
-
-  .left-subText {
-    font-size: 8px;
-  }
-
-
-  .input {
-    padding: 3px 3px 3px 20px;
-    font-size: 9px;
-    left: 12px;
-    top: -3px;
-
+    text-overflow: ellipsis;
   }
 
   .searchBtn {
-    position: absolute;
-    top: 6px;
-    right: 5px;
-    margin-left: 10px;
+    z-index: 1;
   }
-
 
   .img {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
   }
 
-  .right {
-    gap: 6px;
-  }
-
-}
-
-@media (max-width: 380px) {
-
-  .cred,
-  .rest-of-logo {
+  .auth-badge {
     display: none;
   }
 
-  .letter-D {
-    font-size: 20px;
-  }
-
-  .left-subText {
-    display: none;
-  }
-}
-
-@media (max-width: 310px) {
-  .left {
-    display: none;
-  }
-
-}
-
-@media (max-width: 210px) {
-  .left {
-    display: none;
-  }
-}
-
-/* Data-page header actions share a consistent mobile size in every claim state. */
-@media (max-width: 650px) {
-  .header .right {
-    width: auto;
-    flex-shrink: 0;
-    gap: 0;
-  }
-
-  .header .auth-badge {
-    display: none;
-  }
-
-  .header .middle {
-    min-width: 0;
-    flex: 1 1 auto;
-  }
-
-  .header .github-login-btn,
-  .header .status>button,
-  .header .status>span,
-  .header .status div button {
-    position: static;
-    top: auto;
-    right: auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
+  .github-login-btn,
+  .status > button,
+  .status > span,
+  .status div button {
     min-height: 36px;
     padding: 7px 10px;
     font-size: 12px;
     font-weight: 600;
-    line-height: 1.2;
-    white-space: nowrap;
-    border-radius: 5px;
   }
 
-  .header .status {
-    min-width: 0;
-  }
-
-  .header .status div {
+  .status div {
     max-width: 150px;
-    flex-wrap: wrap;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 435px) {
-
-  .header .github-login-btn,
-  .header .status>button,
-  .header .status>span,
-  .header .status div button {
-    padding: 7px 8px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 650px) {
-  .header .status div {
-    display: flex;
     flex-wrap: nowrap;
   }
 
-  .header .claim-error {
+  .claim-error {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -555,22 +318,79 @@
     border: 0;
   }
 
-  .header .status div button,
-  .header .status div button:hover {
+  .status div button {
     color: var(--text-main);
     background: var(--color-primary);
-    border: 1px solid var(--color-primary);
+    border-color: var(--color-primary);
   }
 }
 
-@media (max-width: 650px) {
-  .header .input {
-    min-width: 0;
-    text-overflow: ellipsis;
-    padding-right: 39px;
+@media (max-width: 530px) {
+  .left-header {
+    font-size: 16px;
   }
 
-  .header .searchBtn {
-    z-index: 1;
+  .input {
+    padding: 9px 39px 9px 30px;
+  }
+
+  .img {
+    width: 17px;
+    height: 17px;
   }
 }
+
+@media (max-width: 435px) {
+  .header {
+    height: 60px;
+  }
+
+  .left-header {
+    font-size: 19px;
+  }
+
+  .left-subText {
+    font-size: 8px;
+  }
+
+  .input {
+    padding: 3px 39px 3px 20px;
+    font-size: 9px;
+  }
+
+  .img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .right {
+    gap: 6px;
+  }
+
+  .github-login-btn,
+  .status > button,
+  .status > span,
+  .status div button {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cred,
+  .rest-of-logo,
+  .left-subText {
+    display: none;
+  }
+
+  .letter-D {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 310px) {
+  .left {
+    display: none;
+  }
+}
+
