@@ -1,4 +1,3 @@
-
 .metric-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -24,7 +23,6 @@
   margin: 0;
 }
 
-
 .empty-state-card {
   background: var(--bg-card);
   border: 1px dashed var(--border-color);
@@ -33,8 +31,6 @@
   text-align: center;
   color: var(--text-body);
 }
-
-
 
 .skeleton {
   background: linear-gradient(90deg, var(--bg-card) 25%, var(--border-color) 50%, var(--bg-card) 75%);

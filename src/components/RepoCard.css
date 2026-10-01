@@ -1,5 +1,4 @@
 .repo-card {
-  
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
@@ -9,13 +8,11 @@
   justify-content: space-between;
   gap: 12px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  margin-bottom: 10px;
 }
 
-
 .repo-card:hover {
-  
   border-color: var(--color-primary);
- 
 }
 
 .repo-card-top {
@@ -58,7 +55,6 @@
   font-weight: 500;
 }
 
-
 .repo-desc {
   color: var(--text-body);
   font-size: 14px;
@@ -78,7 +74,6 @@
   width: 100%;
   margin: 4px 0;
 }
-
 
 .repo-card-bottom {
   display: flex;
