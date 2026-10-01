@@ -9,7 +9,8 @@ const developers = [
   'gaearon', 
   'sindresorhus', 
   'addyosmani', 
-  'tj'
+  'tj',
+  'yyx990803'
 ];
 
 export function HomePage({ onSearch, apiBase, isLoggedIn }) {
