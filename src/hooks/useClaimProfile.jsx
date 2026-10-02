@@ -21,7 +21,7 @@ export function useClaimProfile(apiBase) {
       setClaimedProfile(data)
       setClaimStatus("success")
     } catch {
-      setErrorMessage("Check your internet connection and try again");
+      setErrorMessage(" Check your internet connection and try again");
       setClaimStatus("error")
     }
   };
