@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { usePersonalProfile } from '../hooks/usePersonalProfile'
 import { Skeleton } from '../components/Skeleton'
@@ -8,6 +8,7 @@ import RepoCard from '../components/RepoCard'
 import { calculateScore } from '../utils/proofOfWorkScore'
 import { useSuggestions } from '../hooks/useSuggestions'
 import { useAuthToken } from '../hooks/useAuthToken'
+import { generateShareCard } from '../utils/shareCard'
 
 export function ProfilePage({ apiBase }) {
   const { username } = useParams()
@@ -17,6 +18,8 @@ export function ProfilePage({ apiBase }) {
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase, isOwnProfile)
   const { suggestions, loading, fetchSuggestions } = useSuggestions(username, apiBase)
   const [copied, setCopied] = useState(false)
+  const [generatingCard, setGeneratingCard] = useState(false)
+  const cardRef = useRef(null)
 
   if (checkingAuth) {
     return <Skeleton />
@@ -63,6 +66,34 @@ export function ProfilePage({ apiBase }) {
       clip()
     } catch (error) {
       console.log(error.message)
+    }
+  }
+
+  async function handleDownloadCard() {
+    if (!cardRef.current) return
+    setGeneratingCard(true)
+    try {
+      const blob = await generateShareCard(cardRef.current)
+      const file = new File([blob], `skill-dna-${profile.github_username}.png`, { type: 'image/png' })
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'My Skill DNA score',
+          text: `Check out my Proof-of-Work score on Skill DNA`,
+        })
+      } else {
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = `skill-dna-${profile.github_username}.png`
+        link.click()
+        URL.revokeObjectURL(url)
+      }
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+      setGeneratingCard(false)
     }
   }
 
@@ -130,9 +161,17 @@ export function ProfilePage({ apiBase }) {
             <button className={`share-btn ${copied ? 'copied' : ''}`} onClick={handleShare}>
               {copied ? 'Copied!' : 'Share profile'}
             </button>
+
+            <button
+              className="share-btn"
+              onClick={handleDownloadCard}
+              disabled={generatingCard}
+            >
+              {generatingCard ? 'Generating...' : 'Download score card'}
+            </button>
           </div>
 
-          <section className="player-scorecard" aria-label="Proof of work scorecard">
+          <section className="player-scorecard" aria-label="Proof of work scorecard" ref={cardRef}>
             <div className="player-scorecard-topline">
               <span>SKILLDNA / PROOF OF WORK</span><span>DEVELOPER CARD</span>
             </div>
