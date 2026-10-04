@@ -1,105 +1,120 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Manrope, sans-serif;
-}
-
-.header {
-  background: var(--bg-card);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  height: 80px;
-  padding: 0 10px;
+.search-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-}
-
-.left {
-  margin-left: 60px;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 520px) 1fr;
   align-items: center;
-}
-
-.left-header {
-  margin-bottom: 0;
-}
-
-.cred {
-  color: white;
-}
-
-.letter-S {
-  font-size: 40px;
+  gap: 16px;
+  height: 80px;
+  padding: 0 clamp(12px, 4vw, 48px);
   background: var(--bg-card);
-  border: 1px solid;
-  border-radius: var(--card-radius);
+}
+
+.search-header > .auth-control {
+  justify-self: end;
+}
+
+/* ---------- Brand ---------- */
+.search-header-brand {
+  min-width: 0;
+}
+
+.search-header-logo {
+  margin: 0;
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.search-header-initial {
+  display: inline-block;
+  margin-right: 2px;
   padding: 1px 5px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--card-radius);
+  color: var(--color-primary);
+  font-size: 1.25em;
+}
+
+.search-header-accent {
   color: var(--color-primary);
 }
 
-.rest-of-logo {
-  color: var(--color-primary);
+.search-header-rest {
+  color: var(--text-main);
 }
 
-.left-subText {
+.search-header-tagline {
+  margin-top: 2px;
   color: var(--text-body);
   font-size: 13px;
+  white-space: nowrap;
 }
 
-/* Search */
-.middle {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 520px;
-  margin: 0 auto;
+/* ---------- Search ---------- */
+.search-header-search {
   position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 520px;
+  justify-self: center;
 }
 
-.input {
-  width: 100%;
+.search-header-input {
+  flex: 1;
+  min-width: 0;
   height: 44px;
-  max-width: 520px;
-  padding: 0 48px 0 20px;
-  background: var(--bg-input);
-  color: var(--text-main);
+  padding: 0 52px 0 20px;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   outline: none;
+  background: var(--bg-input);
+  color: var(--text-main);
   font-size: 14px;
-  transition: border-color 0.2s ease;
+  text-overflow: ellipsis;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.input:focus {
-  border-color: var(--color-primary);
-}
-
-.input::placeholder {
+.search-header-input::placeholder {
   color: var(--text-muted);
 }
 
-.searchBtn {
+.search-header-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.25);
+}
+
+.search-header-submit {
   position: absolute;
   top: 6px;
-  right: 5px;
-  width: 32px;
-  height: 32px;
+  right: 6px;
+  bottom: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
   background: var(--color-primary);
-  border: none;
-  border-radius: 25%;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.img {
+.search-header-submit:hover {
+  background: var(--color-primary-hover);
+}
+
+.search-header-submit:focus-visible {
+  outline: 2px solid var(--text-main);
+  outline-offset: 2px;
+}
+
+.search-header-icon {
   width: 18px;
   height: 18px;
   opacity: 0.7;
@@ -107,288 +122,47 @@
   transition: opacity 0.2s ease;
 }
 
-.searchBtn:hover .img {
+.search-header-submit:hover .search-header-icon {
   opacity: 1;
 }
 
-/* Right side */
-.right {
-  flex-shrink: 0;
-  width: 350px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 18px;
-}
+/* ---------- Responsive ---------- */
 
-.github-login-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  background: var(--bg-card);
-  color: #fff;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: 0.2s ease;
-}
-
-.github-login-btn:hover {
-  background: var(--bg-input);
-  border-color: var(--color-primary);
-}
-
-/* Claim status */
-.status {
-  display: inline-flex;
-  align-items: center;
-}
-
-.status button {
-  padding: 8px 14px;
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: 0.2s ease;
-}
-
-.status button:hover:not(:disabled) {
-  background: var(--color-primary-hover);
-  transform: translateY(-1px);
-}
-
-.status button:active:not(:disabled) {
-  transform: scale(0.97);
-}
-
-.status button:disabled {
-  background: var(--bg-input);
-  color: var(--text-muted);
-  border: 1px solid var(--border-color);
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.status > span,
-.auth-badge {
-  padding: 5px 12px;
-  color: var(--color-success);
-  background: rgba(44, 167, 80, 0.12);
-  border: 1px solid var(--color-success);
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.status div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #f87171;
-  font-size: 12px;
-}
-
-.status div button {
-  padding: 4px 8px;
-  background: transparent;
-  border: 1px solid #f87171;
-  color: #f87171;
-  font-size: 11px;
-}
-
-.status div button:hover {
-  background: rgba(248, 113, 113, 0.15);
-}
-
-/* Responsive */
 @media (max-width: 900px) {
-  .header {
-    gap: 15px;
-    padding: 12px 20px;
-  }
-
-  .left {
-    margin-left: 10px;
-  }
-
-  .left-header {
-    font-size: 21px;
-  }
-
-  .letter-S {
-    font-size: 26px;
-  }
-
-  .left-subText {
-    font-size: 9px;
-  }
-
-  .right {
-    width: auto;
+  .search-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 12px;
   }
-
-  .input {
-    padding-left: 50px;
-  }
 }
 
-@media (max-width: 650px) {
-  .header {
-    gap: 10px;
-    padding: 0 10px;
-  }
-  
-  .left {
-    margin-left: 5px;
-  }
-
-  .left-header {
-    font-size: 20px;
-  }
-
-  .letter-S {
-    font-size: 25px;
-  }
-
-  .middle {
-    min-width: 0;
-    max-width: none;
-  }
-
-  .right {
-    width: auto;
+@media (max-width: 600px) {
+  .search-header {
     gap: 8px;
+    height: 64px;
   }
 
-  .input {
-    min-width: 0;
-    padding: 11px 39px 11px 35px;
-    font-size: 11px;
-    text-overflow: ellipsis;
+  .search-header-tagline {
+    font-size: 10px;
   }
 
-  .searchBtn {
-    z-index: 1;
-  }
-
-  .img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .auth-badge {
-    display: none;
-  }
-
-  .github-login-btn,
-  .status > button,
-  .status > span,
-  .status div button {
-    min-height: 36px;
-    padding: 7px 10px;
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  .status div {
-    max-width: 150px;
-    flex-wrap: nowrap;
-  }
-
-  .claim-error {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  .status div button {
-    color: var(--text-main);
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-  }
-}
-
-@media (max-width: 530px) {
-  .left-header {
+  .search-header-input {
+    padding-left: 14px;
     font-size: 16px;
   }
-
-  .input {
-    padding: 9px 39px 9px 30px;
-  }
-
-  .img {
-    width: 17px;
-    height: 17px;
-  }
 }
 
-@media (max-width: 435px) {
-  .header {
-    height: 60px;
-  }
-
-  .left-header {
-    font-size: 19px;
-  }
-
-  .left-subText {
-    font-size: 8px;
-  }
-
-  .input {
-    padding: 3px 39px 3px 20px;
-    font-size: 9px;
-  }
-
-  .img {
-    width: 15px;
-    height: 15px;
-  }
-
-  .right {
-    gap: 6px;
-  }
-
-  .github-login-btn,
-  .status > button,
-  .status > span,
-  .status div button {
-    padding: 7px 8px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 380px) {
-  .cred,
-  .rest-of-logo,
-  .left-subText {
+@media (max-width: 400px) {
+  .search-header-accent,
+  .search-header-rest,
+  .search-header-tagline {
     display: none;
   }
-
-  .letter-D {
-    font-size: 20px;
-  }
 }
-@media (max-width: 310px){
-  .left{
-    display: none;
+
+@media (prefers-reduced-motion: reduce) {
+  .search-header-input,
+  .search-header-submit,
+  .search-header-icon {
+    transition: none;
   }
 }

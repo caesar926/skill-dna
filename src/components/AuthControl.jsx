@@ -1,42 +1,55 @@
-import { useClaimProfile } from '../hooks/useClaimProfile'
+import { useClaimProfile } from '../hooks/useClaimProfile';
+import './AuthControl.css';
 
-export function AuthControl({apiBase, authToken}) {
+export function AuthControl({ apiBase, authToken }) {
   const { claimStatus, errorMessage, claimProfile } = useClaimProfile(apiBase);
 
-  return(
-    <>
-      <div className="right">
-        {!authToken ? (
-          <a href={`${apiBase}/auth/login`} className="github-login-btn">
-            Login with GitHub
-          </a>
-        ) : (
-          <>
-            <span className="auth-badge">Authenticated</span>
+  if (!authToken) {
+    return (
+      <div className="auth-control">
+        <a href={`${apiBase}/auth/login`} className="auth-login-btn">
+          Login with GitHub
+        </a>
+      </div>
+    );
+  }
 
-            <div className='status'>
-              {
-                claimStatus === "idle" ? (<button onClick=
-                  {claimProfile}>Claim your profile</button>
-                ) : claimStatus === "loading" ? (
-                  <button disabled >Claiming...</button>
-                ) : claimStatus === "success" ? (
-                  <span>Profile claimed </span>
-                ) : (
-                  <div>
-                    error{errorMessage}
-                    <button onClick=
-                      {claimProfile}>Claim your profile</button>
-                  </div>
+  return (
+    <div className="auth-control">
+      <span className="auth-badge">Authenticated</span>
 
-                )
-              }
-            </div>
-          </>
-
+      <div className="auth-claim">
+        {claimStatus === 'idle' && (
+          <button className="auth-claim-btn" onClick={claimProfile}>
+            Claim your profile
+          </button>
         )}
 
+        {claimStatus === 'loading' && (
+          <button className="auth-claim-btn" disabled>
+            Claiming...
+          </button>
+        )}
+
+        {claimStatus === 'success' && (
+          <span className="auth-claim-done">Profile claimed</span>
+        )}
+
+        {claimStatus !== 'idle' &&
+          claimStatus !== 'loading' &&
+          claimStatus !== 'success' && (
+            <div className="auth-claim-error" role="alert">
+              <span className="auth-claim-error-text">
+                Error: {errorMessage}
+              </span>
+              <button className="auth-retry-btn" onClick={claimProfile}>
+                Claim your profile
+              </button>
+            </div>
+          )}
       </div>
-    </>
-  )
+    </div>
+  );
 }
+
+export default AuthControl;

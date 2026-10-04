@@ -1,51 +1,49 @@
-import { useState } from 'react'
-import {AuthControl} from '../components/AuthControl'
-import './SearchBar.css'
+import { useState } from 'react';
+import { AuthControl } from '../components/AuthControl';
+import './SearchBar.css';
 
 export function SearchBar({ onSearch, authToken, apiBase }) {
-  const [userName, setUserName] = useState('')
+  const [userName, setUserName] = useState('');
 
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      onSearch(userName);
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const name = userName.trim();
+    if (name) onSearch(name);
   };
 
   return (
-    <div className='header'>
-
-      <div className='left'>
-        <h1 className='left-header'>
-          <span className='letter-S'>S</span>
-
-          <span className='rest-of-logo'>KILL</span>
-
-          <span className='cred'>DNA</span></h1>
-        <div className='left-subText'>PROVE YOUR CODE</div>
+    <header className="search-header">
+      <div className="search-header-brand">
+        <h1 className="search-header-logo">
+          <span className="search-header-initial">S</span>
+          <span className="search-header-accent">KILL</span>
+          <span className="search-header-rest">DNA</span>
+        </h1>
+        <div className="search-header-tagline">PROVE YOUR CODE</div>
       </div>
 
-
-      <div className='middle'>
-     
-     <button
-            className='searchBtn'
-            onClick={() => onSearch(userName)}><img className='img' src="icons/search.svg" /></button>
+      <form className="search-header-search" onSubmit={handleSubmit} role="search">
         <input
-          className='input'
-          placeholder='Search developer...'
+          className="search-header-input"
+          type="text"
+          aria-label="Search developer"
+          placeholder="Search developer..."
           value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onChange={(event) => setUserName(event.target.value)}
+          autoComplete="off"
         />
+        <button
+          className="search-header-submit"
+          type="submit"
+          aria-label="Search"
+        >
+          <img className="search-header-icon" src="/icons/search.svg" alt="" />
+        </button>
+      </form>
 
-      </div>
-
-      {<AuthControl apiBase={apiBase} authToken={authToken} />}
-    </div>
-  
-    
+      <AuthControl apiBase={apiBase} authToken={authToken} />
+    </header>
   );
 }
 
-export default SearchBar
+export default SearchBar;

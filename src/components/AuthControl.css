@@ -1,236 +1,161 @@
-.right {
+.auth-control {
+  --auth-danger: #f87171;
+  --auth-danger-bg: rgba(248, 113, 113, 0.15);
+  --auth-success-bg: rgba(63, 185, 80, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   flex-shrink: 0;
-  display: flex;
-  justify-content: end;
-  width: 350px;
-  align-items: center;
-  gap: 18px;
-  position: relative;
+  gap: 12px;
 }
 
-.github-login-btn {
-  position: absolute;.page-search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.page-search-input {
-  width: 100%;
-  height: 54px;
-  background-color: var(--bg-card);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  border-radius: 27px;
-  font-size: 15px;
-  padding: 0 56px 0 24px;
-  outline: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-.page-search-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.25);
-}
-
-.page-search-input::placeholder {
-  color: var(--text-muted);
-}
-
-.search-icon-inline {
-  display: none;
-}
-
-.page-search-btn {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-  width: 42px;
-  height: 42px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
+/* ---------- Buttons: shared base ---------- */
+.auth-login-btn,
+.auth-claim-btn,
+.auth-retry-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
-}
-
-.page-search-btn:hover {
-  background: var(--color-primary-hover);
-}
-
-.page-search-btn img {
-  width: 18px;
-  height: 18px;
-  filter: brightness(0) invert(1);
-}
-  top: -250px;
-  right: -500px;
-  background-color: #24292e;
-  color: #ffffff;
-  border: 1px solid var(--border-color);
-  padding: 8px 14px;
-  border-radius: 5px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-family: inherit;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.2;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.1s ease;
 }
 
-.github-login-btn:hover {
-  background-color: #2f363d;
+.auth-login-btn:focus-visible,
+.auth-claim-btn:focus-visible,
+.auth-retry-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Login link ---------- */
+
+.auth-login-btn {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.auth-login-btn:hover {
+  background: var(--bg-input);
   border-color: var(--color-primary);
 }
 
-.auth-badge {
-  font-size: 12px;
-  color: var(--color-success);
-  background-color: rgba(44, 167, 80, 0.1);
-  border: 1px solid var(--color-success);
-  padding: 4px 10px;
-  border-radius: 12px;
-  white-space: nowrap;
+/* ---------- Claim button ---------- */
+
+.auth-claim-btn {
+  background: var(--color-primary);
+  color: var(--text-main);
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Base Claim Button Styling */
-.status button {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
-}
-
-.status button:hover:not(:disabled) {
-  background-color: #1a64d4;
+.auth-claim-btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 
-.status button:active:not(:disabled) {
+.auth-claim-btn:active:not(:disabled) {
   transform: scale(0.97);
 }
 
-/* Disabled Loading State */
-.status button:disabled {
-  background-color: var(--bg-input);
+.auth-claim-btn:disabled {
+  background: var(--bg-input);
+  border-color: var(--border-color);
   color: var(--text-muted);
-  border: 1px solid var(--border-color);
-  cursor: not-allowed;
   opacity: 0.7;
+  cursor: not-allowed;
 }
 
-/* Success Badge Indicator */
-.status > span {
+/* ---------- Status pieces ---------- */
+
+.auth-claim {
+  display: inline-flex;
+  align-items: center;
+}
+
+.auth-badge,
+.auth-claim-done {
+  padding: 5px 12px;
+  border: 1px solid var(--color-success);
+  border-radius: 999px;
+  background: var(--auth-success-bg);
+  color: var(--color-success);
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-success);
-  background-color: rgba(44, 167, 80, 0.12);
-  border: 1px solid var(--color-success);
-  padding: 5px 12px;
-  border-radius: 12px;
   white-space: nowrap;
 }
 
-/* Error State Container & Retry Button */
-.status div {
+/* ---------- Error + retry ---------- */
+
+.auth-claim-error {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--auth-danger);
   font-size: 12px;
-  color: #f87171;
 }
 
-.status div button {
-  background-color: transparent;
-  border: 1px solid #f87171;
-  color: #f87171;
-  padding: 4px 8px;
+.auth-retry-btn {
+  min-height: 28px;
+  padding: 0 10px;
+  border-color: var(--auth-danger);
+  background: transparent;
+  color: var(--auth-danger);
   font-size: 11px;
 }
 
-.status div button:hover {
-  background-color: rgba(248, 113, 113, 0.15);
+.auth-retry-btn:hover {
+  background: var(--auth-danger-bg);
 }
 
-/* Responsive Scaling */
-@media (max-width: 650px) {
-  .status button {
-    padding: 6px 10px;
-    font-size: 11px;
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  .auth-control {
+    gap: 8px;
   }
-}
 
-@media (max-width: 435px) {
-  .status button {
-    padding: 4px 8px;
-    font-size: 10px;
+  .auth-login-btn,
+  .auth-claim-btn {
+    padding: 0 10px;
+    font-size: 12px;
   }
- 
+
   .auth-badge {
     display: none;
   }
-}
 
-@media (max-width: 650px) {
-  .github-login-btn {
-    padding: 6px 10px;
-    font-size: 11px;
+  .auth-claim-error-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
   }
 }
 
-@media (max-width: 435px) {
-  .github-login-btn {
-    padding: 4px 8px;
-    font-size: 5px;
-  }
-}
-
-@media (max-width: 900px) {
-
-  .header {
-    gap: 15px;
-    padding: 12px 20px;
+@media (prefers-reduced-motion: reduce) {
+  .auth-login-btn,
+  .auth-claim-btn,
+  .auth-retry-btn {
+    transition: none;
   }
 
-  .left{
-    margin-left: 10px;
-  }
-
-  .left-header {
-    font-size: 21px;
-  }
-
-  .letter-S{
-    font-size:26px;
-}
-
-  .left-subText {
-    font-size: 9px;
-  }
-
-  .input {
-    padding-left: 50px;
-  }
-
-  .searchBtn{
-    margin-left: 4px;
+  .auth-claim-btn:hover:not(:disabled),
+  .auth-claim-btn:active:not(:disabled) {
+    transform: none;
   }
 }
