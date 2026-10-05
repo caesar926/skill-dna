@@ -8,7 +8,9 @@ export function useSuggestions(username, apiBase) {
   const fetchSuggestions = async () => {
     setLoading("loading");
     try {
-      const response = await fetch(`${apiBase}/api/profile/${username}/suggestions`);
+      const response = await fetch(`${apiBase}/api/profile/${username}/suggestions`, {
+        credentials: 'include',
+      });
       if (!response.ok) {
         const errorMessage = await response.json();
         setError(errorMessage.error || "Failed to fetch suggestions");

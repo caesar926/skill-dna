@@ -5,7 +5,6 @@ import { Skeleton } from '../components/Skeleton'
 import DevProfile from '../components/DevProfile'
 import Heatmap from '../components/Heatmap'
 import RepoCard from '../components/RepoCard'
-import { calculateScore } from '../utils/proofOfWorkScore'
 import { useSuggestions } from '../hooks/useSuggestions'
 import { useAuthToken } from '../hooks/useAuthToken'
 import { generateShareCard } from '../utils/shareCard'
@@ -49,8 +48,13 @@ export function ProfilePage({ apiBase }) {
     return <p>{errorMessage}</p>
   }
 
+  if (!profile?.scores) {
+    return <p>Scores are unavailable right now. Please try again shortly.</p>
+  }
+
   const { finalScore, activityScore, impactScore, breadthScore, projectQualityScore,
-    openSourceScore } = calculateScore(profile);
+    openSourceScore } = profile.scores;
+
 
   function handleShare() {
     try {
@@ -204,19 +208,19 @@ export function ProfilePage({ apiBase }) {
 
           {(profile.data?.pinnedItems?.nodes ?? []).map((repo) => (
             <div className="repo-grid">
-                   <RepoCard
-              key={repo.id}
-              repo={{
-                html_url: repo.url,
-                name: repo.name,
-                description: repo.description,
-                language: repo.primaryLanguage?.name,
-                stargazers_count: repo.stargazerCount,
-                forks_count: repo.forkCount,
-              }}
-            />
+              <RepoCard
+                key={repo.id}
+                repo={{
+                  html_url: repo.url,
+                  name: repo.name,
+                  description: repo.description,
+                  language: repo.primaryLanguage?.name,
+                  stargazers_count: repo.stargazerCount,
+                  forks_count: repo.forkCount,
+                }}
+              />
             </div>
-       
+
           ))}
         </section>
       </main>

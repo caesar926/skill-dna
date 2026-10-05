@@ -16,7 +16,7 @@ export function usePersonalProfile(username, apiBase, isOwnProfile) {
         ? `${apiBase}/api/profile/claim`
         : `${apiBase}/api/profile/${username}`
 
-      const options = isOwnProfile ? { credentials: 'include' } : {}
+      const options = { credentials: 'include' }
 
       try {
         const response = await fetch(url, options)

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AuthControl } from '../components/AuthControl';
-import { calculateScore } from '../utils/proofOfWorkScore';
+
 import './HomePage.css';
 
 const developers = [
@@ -22,9 +22,10 @@ export function HomePage({ onSearch, apiBase, isLoggedIn }) {
     Promise.allSettled(developers.map(async (name) => {
       const response = await fetch(`${apiBase}/api/public/profile/${name}`);
       if (!response.ok) throw new Error('Profile unavailable');
+      const profile = await response.json();
       return { 
         name, 
-        score: calculateScore(await response.json()).finalScore };
+       score: profile.scores?.finalScore};
     })).then((results) => {
       if (!active) return;
       const next = {};

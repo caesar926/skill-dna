@@ -9,8 +9,9 @@ import './App.css';
 
 
 function App() {
-  const API_BASE = 'https://skill-dna-2sqj.onrender.com';
-
+ const API_BASE = import.meta.env.DEV
+  ? 'http://localhost:3001'
+  : 'https://skill-dna-2sqj.onrender.com';
   const [searchedUser, setSearchedUser] = useState('');
 
   const location = useLocation();
