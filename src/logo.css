@@ -49,7 +49,7 @@
   color: var(--color-primary);
 }
 
-/* very small phones: header shows the bars only, hero keeps the full wordmark */
+
 @media (max-width: 400px) {
   .search-header .sd-word {
     display: none;

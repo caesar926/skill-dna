@@ -33,13 +33,18 @@ body {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  padding: 100px 20px;
+  width: min(420px, calc(100% - 40px));
+  margin: 100px auto;
+  padding: 40px 32px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
   text-align: center;
 }
 
 .analyzing-spinner {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   border: 3px solid var(--border-color);
   border-top-color: var(--color-primary);
   border-radius: 50%;
@@ -47,9 +52,9 @@ body {
 }
 
 .analyzing-text {
-  color: var(--text-body);
-  font-size: 14px;
   min-height: 20px;
+  color: var(--text-body);
+  font-size: 13px;
 }
 
 /* Dashboard */
@@ -95,7 +100,7 @@ body {
   background: var(--color-primary);
   color: var(--text-main);
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
@@ -364,6 +369,7 @@ body {
 /* Error / Login */
 .error-state-card,
 .login-required-card {
+  width: min(420px, calc(100% - 40px));
   max-width: 420px;
   margin: 100px auto;
   padding: 40px 32px;
@@ -433,7 +439,7 @@ body {
   padding: 10px 20px;
   background-color: var(--color-primary);
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
   color: #fff;
   font-size: 13px;
   font-weight: 600;

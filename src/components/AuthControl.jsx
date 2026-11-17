@@ -32,7 +32,7 @@ export function AuthControl({ apiBase, authToken }) {
         )}
 
         {claimStatus === 'success' && (
-          <span className="auth-claim-done"><span>Profile</span> claimed</span>
+          <span className="auth-claim-done"><span>Profile </span> claimed</span>
         )}
 
         {claimStatus !== 'idle' &&

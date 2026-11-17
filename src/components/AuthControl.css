@@ -90,6 +90,10 @@
   align-items: center;
 }
 
+.auth-claim-done span {
+  margin-right: 2px;
+}
+
 .auth-badge,
 .auth-claim-done {
   padding: 0 clamp(8px, 2vw, 18px);
