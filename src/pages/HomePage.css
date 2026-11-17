@@ -25,22 +25,6 @@
   font: 700 21px Sora, sans-serif;
 }
 
-.brand-initial {
-  width: 34px;
-  height: 34px;
-  margin-right: 3px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--color-primary);
-  border-radius: 5px;
-  color: var(--color-primary);
-}
-
-.brand-green {
-  color: var(--color-primary);
-}
-
 .skill-home-auth .right {
   width: auto;
 }
@@ -72,27 +56,12 @@
   width: min(100%, 820px);
 }
 
-.skill-home-eyebrow,
-.skill-home-note,
+
 .skill-home-heading small,
 .skill-home-card-kind,
 .skill-home-card-bottom,
 .skill-home-foot {
   font: 700 11px Manrope, sans-serif;
-}
-
-.skill-home-eyebrow {
-  color: var(--text-body);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.skill-home-dot {
-  height: 7px;
-  width: 7px;
-  border-radius: 50%;
-  background: var(--color-primary);
 }
 
 .skill-home-hero h1 {
@@ -176,11 +145,6 @@
   font-weight: 400;
 }
 
-.skill-home-note {
-  margin-top: 17px;
-  color: var(--text-muted);
-}
-
 .skill-home-discover {
   padding: 44px 0 55px;
   border-top: 1px solid var(--border-color);
@@ -219,10 +183,13 @@
 }
 
 .skill-home-track {
+  --card-w:258px;
+  --card-gap:16px;
+  --pitch:calc(var(--card-w) + var(--card-gap));
   display: flex;
-  gap: 16px;
+  gap: 0;
   width: max-content;
-  animation: skill-home-scroll 22.8s  infinite;
+  animation: skill-home-scroll 24s ease-in-out infinite;
 }
 
 .skill-home-carousel:hover .skill-home-track,
@@ -236,23 +203,20 @@
 }
 
 @keyframes skill-home-scroll {
-  0%, 3.509%     { transform: translateX(0%); }
-  3.509%, 16.667% { transform: translateX(-8.333%); }
-  16.667%, 20.175% { transform: translateX(-8.333%); }
-  20.175%, 33.333% { transform: translateX(-16.667%); }
-  33.333%, 36.842% { transform: translateX(-16.667%); }
-  36.842%, 50%   { transform: translateX(-25%); }
-  50%, 53.509%   { transform: translateX(-25%); }
-  53.509%, 66.667% { transform: translateX(-33.333%); }
-  66.667%, 70.175% { transform: translateX(-33.333%); }
-  70.175%, 83.333% { transform: translateX(-41.667%); }
-  83.333%, 86.842% { transform: translateX(-41.667%); }
-  86.842%, 100%  { transform: translateX(-50%); }
+  0%, 11%        { transform: translateX(0); }
+  14.286%, 25.5% { transform: translateX(calc(var(--pitch) * -1)); }
+  28.571%, 39.8% { transform: translateX(calc(var(--pitch) * -2)); }
+  42.857%, 54.1% { transform: translateX(calc(var(--pitch) * -3)); }
+  57.143%, 68.4% { transform: translateX(calc(var(--pitch) * -4)); }
+  71.429%, 82.7% { transform: translateX(calc(var(--pitch) * -5)); }
+  85.714%, 97%   { transform: translateX(calc(var(--pitch) * -6)); }
+  100%           { transform: translateX(calc(var(--pitch) * -7)); }
 }
 
 
 .skill-home-card {
-  width: 258px;
+  width: var(--card-w);
+  margin-right:var(--card-gap);
   height: 214px;
   flex: none;
   display: flex;
@@ -342,11 +306,6 @@
     font-size: 17px;
   }
 
-  .brand-initial {
-    width: 29px;
-    height: 29px;
-  }
-
   .skill-home-auth .github-login-btn {
     padding: 9px 10px;
     font-size: 11px;
@@ -393,10 +352,6 @@
     font-size: 16px;
   }
 
-  .skill-home-note {
-    font-size: 9px;
-  }
-
   .skill-home-discover {
     padding-top: 33px;
   }
@@ -426,3 +381,20 @@
     transition: none;
   }
 }
+
+@media (max-width: 400px) {
+  .skill-home-track{
+    --card-w:calc(100vw - 44px);
+    --card-gap:44px;
+  }
+
+  .skill-home-carousel {
+    padding: 0 22px;
+  }
+
+  .skill-home-card {
+    width: calc(100vw - 44px);
+    margin-right: 44px; 
+  }
+}
+

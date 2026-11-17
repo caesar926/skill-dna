@@ -8,7 +8,7 @@ export function AuthControl({ apiBase, authToken }) {
     return (
       <div className="auth-control">
         <a href={`${apiBase}/auth/login`} className="auth-login-btn">
-          Login with GitHub
+          Login <span>with GitHub</span>
         </a>
       </div>
     );
@@ -32,19 +32,21 @@ export function AuthControl({ apiBase, authToken }) {
         )}
 
         {claimStatus === 'success' && (
-          <span className="auth-claim-done">Profile claimed</span>
+          <span className="auth-claim-done"><span>Profile</span> claimed</span>
         )}
 
         {claimStatus !== 'idle' &&
           claimStatus !== 'loading' &&
           claimStatus !== 'success' && (
             <div className="auth-claim-error" role="alert">
+              
+              <button className="auth-retry-btn" onClick={claimProfile}>
+                Retry
+              </button>
+
               <span className="auth-claim-error-text">
                 Error: {errorMessage}
               </span>
-              <button className="auth-retry-btn" onClick={claimProfile}>
-                Claim your profile
-              </button>
             </div>
           )}
       </div>

@@ -13,16 +13,25 @@ export function SearchBar({ onSearch, authToken, apiBase }) {
 
   return (
     <header className="search-header">
-      <div className="search-header-brand">
-        <h1 className="search-header-logo">
-          <span className="search-header-initial">S</span>
-          <span className="search-header-accent">KILL</span>
-          <span className="search-header-rest">DNA</span>
-        </h1>
-        <div className="search-header-tagline">PROVE YOUR CODE</div>
-      </div>
 
-      <form className="search-header-search" onSubmit={handleSubmit} role="search">
+      <span className='sd-logo'>
+          <span className='sd-mark' aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+          <span className='sd-word'>Skill<b>DNA</b></span>
+        </span>
+
+    
+        <form className="search-header-search" onSubmit={handleSubmit} role="search">
         <input
           className="search-header-input"
           type="text"
@@ -40,7 +49,8 @@ export function SearchBar({ onSearch, authToken, apiBase }) {
           <img className="search-header-icon" src="/icons/search.svg" alt="" />
         </button>
       </form>
-
+     
+      
       <AuthControl apiBase={apiBase} authToken={authToken} />
     </header>
   );

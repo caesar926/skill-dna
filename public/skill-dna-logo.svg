@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Skill DNA logo mark">
 <defs>
-<linearGradient id="dna" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#20D9FF"/><stop offset="48%" stop-color="#168BFF"/><stop offset="100%" stop-color="#3047E8"/></linearGradient>
+<linearGradient id="dna" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3fb950"/><stop offset="48%" stop-color="#2ea043"/><stop offset="100%" stop-color="#1a7f37"/></linearGradient>
 <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <g fill="none" stroke="url(#dna)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">

@@ -49,9 +49,21 @@ export function HomePage({ onSearch, apiBase, isLoggedIn }) {
         className="skill-home-brand" 
         href="/" 
         aria-label="SkillDNA home">
-          <span className="brand-initial">S</span>
-          <span className="brand-green">KILL</span>
-           DNA
+        <span className= "sd-logo">
+          <span className="sd-mark" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+        
+        </span>
           </a>
         <div className="skill-home-auth">
           <AuthControl 
@@ -61,23 +73,28 @@ export function HomePage({ onSearch, apiBase, isLoggedIn }) {
       </header>
       <section className="skill-home-hero" aria-labelledby="home-title">
         <div className="skill-home-hero-inner">
-          <div className="skill-home-eyebrow">
-            <span className="skill-home-dot" /> 
-            DEVELOPER INTELLIGENCE / GITHUB
-            </div>
-          <h1 id="home-title">Decode developer 
-            <span> DNA.</span>
-          </h1>
-           <p>
-            Look beyond the résumé. Search a GitHub username to explore real repositories, languages, and proof of work.
-            </p>
+
+        <span className='sd-logo'>
+          <span className='sd-mark' aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+          <span className='sd-word'>Skill<b>DNA</b></span>
+        </span>
+
           <form 
           className="skill-home-search" 
           onSubmit={search} 
           role="search"
           >
-          
-
             <input 
             type="text" 
             aria-label="GitHub username" placeholder="Enter a GitHub username" 
@@ -90,9 +107,7 @@ export function HomePage({ onSearch, apiBase, isLoggedIn }) {
             >Analyze
             </button>
           </form>
-          <div className="skill-home-note">
-            PUBLIC GITHUB PROFILES · NO SIGN-IN NEEDED TO SEARCH
-          </div>
+      
         </div>
       </section>
       <section className="skill-home-discover" aria-labelledby="discover-title">
