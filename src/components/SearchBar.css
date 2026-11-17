@@ -118,18 +118,6 @@
   }
 }
 
-@media (max-width: 400px) {
-  .sd-word {
-    display: none;
-  }
-}
-
-@media (max-width: 400px) {
-  .search-header .sd-word {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
 
   .search-header-input,
