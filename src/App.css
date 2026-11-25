@@ -435,6 +435,12 @@ body {
   font-weight: 700;
 }
 
+.error-icon.is-info {
+  background: rgba(46, 160, 67, 0.15);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
 .error-retry-btn {
   padding: 10px 20px;
   background-color: var(--color-primary);

@@ -8,7 +8,7 @@ export function AuthControl({ apiBase, authToken }) {
     return (
       <div className="auth-control">
         <a href={`${apiBase}/auth/login`} className="auth-login-btn">
-          Login <span>with GitHub</span>
+          Login <span> with GitHub</span>
         </a>
       </div>
     );

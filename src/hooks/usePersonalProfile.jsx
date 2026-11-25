@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { useEffect } from "react"
+import {useEffect, useState } from "react";
 
 export function usePersonalProfile(username, apiBase, isOwnProfile) {
   const [status, setStatus] = useState("loading")

@@ -5,23 +5,38 @@ import { Skeleton } from '../components/Skeleton'
 import DevProfile from '../components/DevProfile'
 import Heatmap from '../components/Heatmap'
 import RepoCard from '../components/RepoCard'
+import UnclaimedCard from '../components/UnclaimedCard'
 import { useSuggestions } from '../hooks/useSuggestions'
 import { useAuthToken } from '../hooks/useAuthToken'
+import { useClaimedProfile } from '../hooks/useClaimedProfile'
 import { generateShareCard } from '../utils/shareCard'
 
 export function ProfilePage({ apiBase }) {
   const { username } = useParams()
 
   const [isLoggedIn, , viewerUsername, checkingAuth] = useAuthToken(apiBase)
-  const isOwnProfile = viewerUsername === username
+  const { claimedLoading, claimed, claimedError } = useClaimedProfile(username, apiBase)
+  const isOwnProfile = viewerUsername?.toLowerCase() === username
   const { status, errorMessage, profile } = usePersonalProfile(username, apiBase, isOwnProfile)
   const { suggestions, loading, fetchSuggestions } = useSuggestions(username, apiBase)
   const [copied, setCopied] = useState(false)
   const [generatingCard, setGeneratingCard] = useState(false)
   const cardRef = useRef(null)
 
-  if (checkingAuth) {
+  if (checkingAuth || claimedLoading) {
     return <Skeleton />
+  }
+
+  if (claimedError) {
+    return <p>{claimedError}</p>
+  }
+
+  if (claimed === false && !isOwnProfile) {
+    return <UnclaimedCard 
+    username={username} 
+    apiBase={apiBase} 
+    isLoggedIn={isLoggedIn} 
+    />
   }
 
   if (!isLoggedIn) {
@@ -41,7 +56,11 @@ export function ProfilePage({ apiBase }) {
   }
 
   if (status === "notFound") {
-    return <p>This developer hasn't claimed their profile yet</p>
+    return <UnclaimedCard 
+    username={username} 
+     apiBase={apiBase} 
+     isLoggedIn={isLoggedIn} 
+     />
   }
 
   if (status === "error") {
