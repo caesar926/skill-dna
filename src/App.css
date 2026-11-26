@@ -451,6 +451,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  text-decoration: none;
 }
 
 .error-retry-btn:hover {
